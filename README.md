@@ -55,8 +55,6 @@ Perform the following steps to install TensorFlow and PyTorch built with ZenDNN:
 To run inference on the TensorFlow model using ZenDNN, you must first download and install the TensorFlow+ZenDNN package. Perform the following steps to complete the TensorFlow+ZenDNN installation:
 1. Download the TensorFlow+ZenDNN v3.3 release package from [AMD Developer Central](https://developer.amd.com/zendnn/).
 
-    **Note:** You must sign a EULA to download. Read it carefully and click **I ACCEPT** to download the package.
-
 2. Unzip the package. For example: TF_v2.9_ZenDNN_v3.3_Python_v3.8.zip.
     ```
    unzip TF_v2.9_ZenDNN_v3.3_Python_v3.8.zip
@@ -73,8 +71,6 @@ TensorFlow+ZenDNN installation completes.
 To run inference on the PyTorch model using ZenDNN, you must first download and install the PyTorch+ZenDNN package. Perform the following steps to complete the PyTorch+ZenDNN installation:
 1. Download PTv1.11+ZenDNNv3.3 release package from [AMD Developer Central](https://developer.amd.com/zendnn/).
 
-    **Note:** You must sign a EULA to download. Read it carefully and click **I ACCEPT** to download the package.
-
 2. Unzip the package. For example: PT_v1.11.0_ZenDNN_v3.3_Python_v3.8.zip.
     ```
     unzip PT_v1.11.0_ZenDNN_v3.3_Python_v3.8.zip
@@ -89,8 +85,6 @@ To run inference on the PyTorch model using ZenDNN, you must first download and 
 
 ## UIF Model Setup
 You can access the models supported by UIF 1.0 from [UIF Developer Site](https://www.xilinx.com/member/uif_developer.html).
-
-**Note:** To download a UIF1.0 model, you must sign a EULA.
 
 ## Inference Server Setup
 
@@ -115,8 +109,7 @@ AMD Inference Server is integrated with [ZenDNN](https://developer.amd.com/zendn
     2. Download the file
         1. For TensorFlow: TF_v2.9_ZenDNN_v3.3_C++_API.zip
         2. For PyTorch: PT_v1.11.0_ZenDNN_v3.3_C++_API.zip
-    3. You must sign a EULA to download. Read it carefully and click **I ACCEPT** to download the package.
-    4. Copy the downloaded package within the repository. Use the package for the next steps in the setup.
+    3. Copy the downloaded package within the repository. Use the package for the next steps in the setup.
 
 3. Build the Docker with TensorFlow/PyTorch+ZenDNN.
 

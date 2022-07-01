@@ -343,7 +343,7 @@ UIF is licensed under [Apache License Version 2.0](LICENSE). Refer to the [LICEN
 Please email uif_support@amd.com for questions, issues, and feedback on UIF.
 
 Please submit your questions, feature requests, and bug reports on the
-[GitHub issues](https://https://github.com/amd/UIF/issues) page.
+[GitHub issues](https://github.com/amd/UIF/issues) page.
 
 # Disclaimer
 The information presented in this document is for informational purposes only and may contain technical inaccuracies, omissions, and typographical errors. The information contained herein is subject to change and may be rendered inaccurate for many reasons, including but not limited to product and roadmap changes, component and motherboard version changes, new model and product releases, product differences between differing manufacturers, software changes, BIOS flashes, firmware upgrades, or the like. Any computer system has risks of security vulnerabilities that cannot be completely prevented or mitigated. Neither AMD nor any of its affiliates and subsidiaries (individually and collectively, “AMD”) assume any obligation to update or otherwise correct or revise this information. However, AMD reserves the right to revise this information and to make changes from time to time to the content hereof without obligation of AMD to notify any person of such revisions or changes.

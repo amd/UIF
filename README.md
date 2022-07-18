@@ -180,20 +180,10 @@ git lfs fetch --all
 git lfs pull
 ```
 
-To run the examples and test cases, download some models as follows:
-
-1. TensorFlow+ZenDNN
-
-    Run the following command to download a ResNet50 TensorFlow model.
-    ```
-    ./proteus get --tfzendnn
-    ```
-2.  PyTorch+ZenDNN
-
-    Run the command below to download a ResNet50 PyTorch model.
-    ```
-    ./proteus get --ptzendnn
-    ```
+To run the examples and test cases, download some models. Run the following command to download ResNet50 TensorFlow and PyTorch models.
+```
+./proteus get
+```
 
 ### Set Up Docker Container
 

@@ -116,13 +116,12 @@ AMD Inference Server is integrated with [ZenDNN](https://developer.amd.com/zendn
     Currently, these images are not pre-built, so you must build them. You must enable Docker BuildKit by setting `export DOCKER_BUILDKIT=1` in the environment.  To build the Docker image with TensorFlow/PyTorch+ZenDNN, use the following command:
     1. For TensorFlow
         ```
-        ./proteus dockerize --no-vitis --tfzendnn=TF_v2.9_ZenDNN_v3.3_C++_API.zip
+        ./proteus dockerize --tfzendnn=TF_v2.9_ZenDNN_v3.3_C++_API.zip
         ```
     2. For PyTorch
         ```
-        ./proteus dockerize --no-vitis --ptzendnn=PT_v1.11.0_ZenDNN_v3.3_C++_API.zip
+        ./proteus dockerize --ptzendnn=PT_v1.11.0_ZenDNN_v3.3_C++_API.zip
         ```
-    `--no-vitis` flag is provided to build the Docker without Vitis components.
 
     This builds a Docker image with all the dependencies required for the AMD Inference Server and sets up TensorFlow/PyTorch+ZenDNN within the image for further usage.
 

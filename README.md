@@ -27,7 +27,7 @@ UIF 1.0 targets AMD EPYC&trade; CPUs. Currently, AMD EPYC&trade; CPUs use the Ze
 - [Sample Run with TensorFlow+ZenDNN](#sample-run-with-tensorflowzendnn)
 - [License](#license)
 - [Technical Support](#technical-support)
-- [Disclaimer](#Disclaimer)
+- [Disclaimer](#disclaimer)
 
 # UIF 1.0 Release Highlights
 UIF 1.0 highlights include:
@@ -45,7 +45,7 @@ UIF 1.0 prerequisites include:
   * OS: Ubuntu® 18.04 LTS and later, Red Hat® Enterprise Linux® (RHEL) 8.0 and later, and CentOS 7.9 and later
   * ZenDNN 3.3
   * Vitis AI 2.5 Model Zoo
-  * Inference Server 0.3.0
+  * Inference Server 0.2.0
 
 # Installation
 
@@ -202,20 +202,6 @@ To run the examples and test cases, download some models. Run the following comm
     ```
     **Note:** If you are switching containers and the build folder already exists in the inference-server folder, use `--regen --clean` flags to regenerate CMakeFiles and do a clean build to avoid any issues.
 
-3. For PyTorch+ZenDNN only:
-
-    Convert the downloaded PyTorch eager model to TorchScript Model ([Exporting to TorchScript docs](https://pytorch.org/tutorials/advanced/cpp_export.html#converting-to-torch-script-via-tracing)).
-
-    To convert the model to the TorchScript model, follow these steps:
-
-    1. Use the PyTorch Python API. Install requirements with the following command:
-        ```
-        pip3 install -r tools/zendnn/requirements.txt
-        ```
-    2. To convert the model to the TorchScript Model, execute the following:
-        ```
-        python tools/zendnn/convert_to_torchscript.py --graph external/pytorch_models/resnet50_pretrained.pth
-        ```
 
 #### Python API
 

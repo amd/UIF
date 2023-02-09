@@ -1,0 +1,40 @@
+# Copyright 2019 Xilinx Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: ofa-resnet50 for Image Classification.
+input size: 192*192
+float ops: 3.6G
+task: classification
+framework: pytorch
+prune: None
+version: 1.1
+files:
+- name: pt_ofa_resnet50_imagenet_192_192_0.74_3.6G_1.1_M2.4
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet50_imagenet_192_192_0.74_3.6G_1.1_M2.4.tar.gz
+  checksum: ffd0c5f8922a2b6befb697cc65b32690
+- name: pt_ofa_resnet50_imagenet_192_192_0.74_3.6G_1.1_M2.4_MI100
+  type: Ymodel
+  board: M100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet50_imagenet_192_192_0.74_3.6G_1.1_M2.4_MI100.zip
+  checksum: 3fa7c3bcddeebaeff121e5566a95f96a
+- name: pt_ofa_resnet50_imagenet_192_192_0.74_3.6G_1.1_M2.4_MI210
+  type: Ymodel
+  board: M210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet50_imagenet_192_192_0.74_3.6G_1.1_M2.4_MI210.zip
+  checksum: ea8a6c2ac929e4ccbad89d038d74a03e
+license: license: https://github.com/amd/UIF/blob/main/LICENSE
+

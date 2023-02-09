@@ -1,0 +1,29 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: ALBERT Base for SQuADv1.1 Question Answering.
+input size: '384'
+float ops: 70.66G
+task: Question Answering
+framework: pytorch
+prune: 'no'
+version: 1.1
+files:
+- name: pt_albert_base_SQuADv1.1_384_70.66G_1.1_Z4.0
+  type: float
+  board: CPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_albert_base_SQuADv1.1_384_70.66G_1.1_Z4.0.zip
+  checksum: 6177966a26c5ea22653099af84f6e37d
+license: https://github.com/amd/UIF/blob/main/LICENSE

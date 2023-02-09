@@ -1,0 +1,40 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: inceptionv3 prune0.4 model for image classification.
+input size: 299x299
+float ops: 6.8G
+task: image classfication
+framework: pytorch
+prune: 'yes'
+version: 1.1
+files:
+- name: pt_inceptionv3_imagenet_299_299_0.4_6.8G_1.1_M2.4
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inceptionv3_imagenet_299_299_0.4_6.8G_1.1_M2.4.zip
+  checksum: 04a2de0728b1d721f42bf8b09b1ec754
+- name: pt_inceptionv3_imagenet_299_299_0.4_6.8G_1.1_M2.4_MI100
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inceptionv3_imagenet_299_299_0.4_6.8G_1.1_M2.4_MI100.zip
+  checksum: feb5fdef257a3e638c9b2dfee63bfeff
+- name: pt_inceptionv3_imagenet_299_299_0.4_6.8G_1.1_M2.4_MI200
+  type: ymodel
+  board: MI200
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inceptionv3_imagenet_299_299_0.4_6.8G_1.1_M2.4_MI210.zip
+  checksum: e46074151d38d6879941d9bde46a3e6a
+license: https://github.com/amd/UIF/blob/main/LICENSE
+

@@ -1,0 +1,30 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: Inception V4 for ImageNet Classification.
+input size: '299'
+float ops: 24.55G
+task: Image Classification
+framework: TensorFlow 1
+prune: 'no'
+version: 1.1
+files:
+- name: tf_inceptionv4_imagenet_299_299_24.55G_1.1_Z4.0
+  type: float and quantized
+  board: CPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_inceptionv4_imagenet_299_299_24.55G_1.1_Z4.0.zip
+  checksum: 2a053598830417af4628cca4ffcd60e5
+license: https://github.com/amd/UIF/blob/main/LICENSE
+

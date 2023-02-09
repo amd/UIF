@@ -1,330 +1,169 @@
+<table width="100%">
+  <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    </td>
+ </table>
+
 # Unified Inference Frontend
+
 Unified Inference Frontend (UIF) is an effort to consolidate the following compute platforms under one AMD inference solution with unified tools and runtime:
-- AMD EPYC&trade;
-- AMD Ryzen&trade;
-- AMD CDNA&trade;
-- AMD RDNA&trade;
-- Versal&reg; ACAP
-- Field Programmable Gate Arrays (FPGAs)
+
+- AMD EPYC&trade; processors
+- AMD Instinct™ GPUs
+- AMD Ryzen&trade; processors
+- Versal&trade; ACAP
+- Field programmable gate arrays (FPGAs)
 
 UIF accelerates deep learning inference applications on all AMD compute platforms for popular machine learning frameworks, including TensorFlow, PyTorch, and ONNXRT. It consists of tools, libraries, models, and example designs optimized for AMD platforms that enable deep learning applications and framework developers to improve inference performance across various workloads such as computer vision, natural language processing, and recommender systems.
 
-# Unified Inference Frontend 1.0
-UIF 1.0 targets AMD EPYC&trade; CPUs. Currently, AMD EPYC&trade; CPUs use the ZenDNN library (for more information, see [Zen DNN library](https://github.com/amd/ZenDNN)) as the accelerator for deep learning inference. UIF 1.0 enables Vitis&trade; AI Model Zoo for TensorFlow+ZenDNN and PyTorch+ZenDNN. The Vitis AI Optimizer optimizes the models provided to developers as AMD-optimized models that show performance benefits when run on the ZenDNN backend. UIF 1.0 release also introduces TensorFlow+ZenDNN and PyTorch+ZenDNN backends for AMD Inference Server (for more information, see [AMD Inference Server](https://github.com/Xilinx/inference-server)). This document provides information about downloading, building, and running the UIF 1.0 release.
 
-# Table of Contents
+![](/images/slide24.png)
 
-- [Release Highlights](#uif-10-release-highlights)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-  - [ZenDNN Installation](#zendnn-installation)
-  - [UIF Model Setup](#uif-model-setup)
-  - [Inference Server Setup](#inference-server-setup)
-- [Quick Start](#quick-start)
-  - [Run Examples with TensorFlow+ZenDNN](#run-examples-with-tensorflowzendnn)
-  - [Run Examples with PyTorch+ZenDNN](#run-examples-with-pytorchzendnn)
-  - [Run Examples with Inference Server](#run-examples-with-inference-server)
-- [Sample Run with TensorFlow+ZenDNN](#sample-run-with-tensorflowzendnn)
-- [License](#license)
-- [Technical Support](#technical-support)
-- [Disclaimer](#disclaimer)
+* **Note:** WinML is supported on Windows OS only.
 
-# UIF 1.0 Release Highlights
-UIF 1.0 highlights include:
-* TensorFlow/PyTorch installer packages for ZenDNN
-* 50+ float, int8 quantized, and pruned models enabled to run on TensorFlow+ZenDNN, PyTorch+ZenDNN
-* The following standard interface for all inference modes supported by the inference server:
-  * Common C++ and Server APIs for model deployment
-  * Backend interface for using TensorFlow/PyTorch+ZenDNN for inference
+# Unified Inference Frontend 1.1
+
+UIF 1.1 extends the support to AMD Instinct GPUs in addition to EPYC CPUs starting from UIF 1.0. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for Instinct GPUs for Deep Learning Inference. UIF 1.1 provides 45 optimized models for Instinct GPUs and 75+ for EPYC CPUs. The Vitis&trade; AI Optimizer tool is released as part of the Vitis AI 3.0 stack. UIF Quantizer is released in the in the PyTorch and TensorFlow Docker® images. Leveraging the UIF Optimizer and Quantizer enables performance benefits for customers when running with the MIGraphX and ZenDNN backends for Instinct GPUs and EPYC CPUs, respectively. This release also adds MIGraphX backend for [AMD Inference Server](https://github.com/Xilinx/inference-server). This document provides information about downloading, building, and running the UIF 1.1 release.
+
+## AMD Instinct GPU
+
+UIF 1.1 targets support for AMD GPUs. While UIF 1.0 enabled Vitis AI Model Zoo for TensorFlow+ZenDNN and PyTorch+ZenDNN, UIF v1.1 adds support for AMD Instinct&trade; GPUs. 
+
+UIF 1.1 also introduces tools for optimizing inference models. GPU support includes the ability to use AMD GPUs for optimizing inference as well the ability to deploy inference using the AMD ROCm™ platform. Additionally, UIF 1.1 has expanded the set of models available for AMD CPUs and introduces new models for AMD GPUs as well.
+
+# Release Highlights
+
+The highlights of this release are as follows:
+
+ZenDNN:
+* TensorFlow and PyTorch with ZenDNN packages for download (from the ZenDNN web site)
+* 75+ float, INT8 quantized and/or pruned models enabled to be run on TensorFlow+ZenDNN and PyTorch+ZenDNN
+* Up to 20.5x the throughput (images/second) running Medical EDD RefineDet with the Xilinx Vitis AI Model Zoo 3.0 88% pruned INT8 model on 2P AMD Eng Sample: 100-000000894-04
+of the EPYC 9004 96-core processor powered server with ZenDNN v4.0 compared to the baseline FP32 Medical EDD RefineDet model from the same Model Zoo. ([ZD-036](#zd036))
+* Docker containers for running AMD Inference Server
+
+ROCm:
+* Docker containers containing tools for optimizing models for inference
+* 30 quantized models enabled to run on AMD ROCm platform using MIGraphX inference engine
+* Up to 5.3x the throughput (images/second) running PT-OFA-ResNet50 with the Xilinx Vitis AI Model Zoo 3.0 88% pruned FP16 model on an AMD MI100 accelerator powered production server compared to the baseline FP32 PT- ResNet50v1.5 model from the same Model Zoo. ([ZD-041](#zd041))
+* Docker containers for running AMD Inference Server
+
+AMD Inference Server provides a common interface for all inference modes:
+  * Common C++ and server APIs for model deployment
+  * Backend interface for using TensorFlow/PyTorch in inference for ZenDNN
+  * Additional UIF 1.1 optimized models examples for Inference Server
+  * Integration with KServe
 
 # Prerequisites
-UIF 1.0 prerequisites include:
-* Hardware  
-  * CPU: AMD EPYC&trade; [7002](https://www.amd.com/en/processors/epyc-7002-series) and [7003](https://www.amd.com/en/processors/epyc-7003-series) Series Processors
-* Software
-  * OS: Ubuntu® 18.04 LTS and later, Red Hat® Enterprise Linux® (RHEL) 8.0 and later, and CentOS 7.9 and later
-  * ZenDNN 3.3
-  * Vitis AI 2.5 Model Zoo
-  * Inference Server 0.2.0
-
-# Installation
-
-## ZenDNN Installation
-Perform the following steps to install TensorFlow and PyTorch built with ZenDNN:
-### TensorFlow+ZenDNN
-To run inference on the TensorFlow model using ZenDNN, you must first download and install the TensorFlow+ZenDNN package. Perform the following steps to complete the TensorFlow+ZenDNN installation:
-1. Download the TensorFlow+ZenDNN v3.3 release package from [AMD Developer Central](https://developer.amd.com/zendnn/).
 
-2. Unzip the package. For example: TF_v2.9_ZenDNN_v3.3_Python_v3.8.zip.
-    ```
-   unzip TF_v2.9_ZenDNN_v3.3_Python_v3.8.zip
-    ```
-3. Ensure that you have the conda environment installed, and execute the following commands:
-
-    ```
-    cd TF_v2.9_ZenDNN_v3.3_Python_v*/
-    source scripts/TF_ZenDNN_setup_release.sh
-    ```
-TensorFlow+ZenDNN installation completes.
+The following prerequisites must be met for this release of UIF:
 
-### PyTorch+ZenDNN
-To run inference on the PyTorch model using ZenDNN, you must first download and install the PyTorch+ZenDNN package. Perform the following steps to complete the PyTorch+ZenDNN installation:
-1. Download PTv1.11+ZenDNNv3.3 release package from [AMD Developer Central](https://developer.amd.com/zendnn/).
+* Hardware based on target platform:
+  * CPU: AMD EPYC [9004](https://www.amd.com/en/processors/epyc-9004-series) or [7003](https://www.amd.com/en/processors/epyc-7003-series) Series Processors
+  * GPU: AMD Instinct&trade; [MI200](https://www.amd.com/en/graphics/instinct-server-accelerators) or [MI100](https://www.amd.com/en/products/server-accelerators/instinct-mi100) Series GPU
+  * FPGA/AI Engine: Zynq&trade; SoCs or Versal devices supported in [Vitis AI 3.0](https://github.com/Xilinx/Vitis-AI)
 
-2. Unzip the package. For example: PT_v1.11.0_ZenDNN_v3.3_Python_v3.8.zip.
-    ```
-    unzip PT_v1.11.0_ZenDNN_v3.3_Python_v3.8.zip
-    ```
-3. Ensure that you have the conda environment installed, and execute the following commands:
+* Software based on target platform:
+  * OS: Ubuntu® 18.04 LTS and later, Red Hat® Enterprise Linux® (RHEL) 8.0 and later, CentOS 7.9 and later
+  * ZenDNN 4.0 for AMD EPYC CPU
+  * MIGraphX 2.4 for AMD Instinct GPU
+  * Vitis AI 3.0 FPGA/AIE
+  * Vitis AI 3.0 Model Zoo
+  * Inference Server 0.3
 
-    ```
-    cd PT_v1.11.0_ZenDNN_v3.3_Python_v*/ZenDNN/
-    source scripts/PT_ZenDNN_setup_release.sh
-    ```
-    PyTorch+ZenDNN installation completes.
+## Implementing UIF 1.1
 
-## UIF Model Setup
-You can access the models supported by UIF 1.0 from [UIF Developer Site](https://www.xilinx.com/member/uif_developer.html).
+### Step 1: Installation 
 
-## Inference Server Setup
+The UIF software is made available through Docker Hub. The tools container contains the quantizer, compiler, and runtime for AMD Instinct GPUs and EPYC CPUs. The following page provides the instructions to install UIF:
 
-AMD Inference Server is integrated with [ZenDNN](https://developer.amd.com/zendnn/) optimized libraries. For more information on the AMD Inference Server, see the [GitHub page](https://github.com/Xilinx/inference-server) or the [documentation](https://xilinx.github.io/inference-server/main/index.html).
+- <a href="/docs/1_installation/installation.md#11-pull-pytorchtensorflow-docker-for-gpu-users">1.1: Pull PyTorch/TensorFlow Docker (for GPU Users)</a>
+- <a href="/docs/1_installation/installation.md#12-pull-pytorchtensorflow-docker-for-fpga-users">1.2: Pull PyTorch/TensorFlow Docker (for FPGA Users)</a>
+- <a href="/docs/1_installation/installation.md#13-install-zendnn-package-for-cpu-users">1.3: Install ZenDNN Package (for CPU Users)</a>
+- <a href="/docs/1_installation/installation.md#14-get-the-inference-server-docker-image-for-model-serving">1.4: Get the Inference Server Docker Image (for Model Serving)</a>
+ 
+### Step 2: Model Setup
 
-**Note:** To use AMD Inference Server, you need Git and Docker installed on your machine.
+The UIF Model Zoo includes optimized deep learning models to speed up the deployment of deep learning inference on AMD platforms. These models cover different applications, including but not limited to ADAS/AD, medical, video surveillance, robotics, and data center. Go to the following pages to learn how to download and set up the pre-compiled models for target platforms: 
 
-1. Clone the Inference Server.
+ - <a href="/docs/2_model_setup/uifmodelsetup.md#21-uif-model-zoo-introduction">2.1: UIF Model Zoo Introduction</a>
+ - <a href="/docs/2_model_setup/uifmodelsetup.md#22-get-zendnn-models-from-uif-model-zoo">2.2: Get ZenDNN Models from UIF Model Zoo</a>
+ - <a href="/docs/2_model_setup/uifmodelsetup.md#23-get-migraphx-models-from-uif-model-zoo">2.3: Get MIGraphX Models from UIF Model Zoo</a>
+ - <a href="/docs/2_model_setup/uifmodelsetup.md#24-set-up-migraphx-ymodel">2.4: Set Up MIGraphX YModel</a>
+ - <a href="/docs/2_model_setup/uifmodelsetup.md#25-get-vitis-ai-models-from-uif-model-zoo">2.5: Get Vitis AI Models from UIF Model Zoo</a>
+ - <a href="/docs/2_model_setup/gpu_model_example.md">2.6: GPU Model Example</a>
+ 
+ ### Step 3: Run Examples
 
-    1. Clone the inference-server repo
-       ```
-       git clone https://github.com/Xilinx/inference-server
-       ```
-    2. Navigate to the `inference-server`
-       ```
-       cd inference-server
-       ```
+- <a href="/docs/3_run_example/runexample-script.md">3.1: Run a CPU Example</a>
+- <a href="/docs/3_run_example/inference_server_example.md">3.2: Run an Example with the Inference Server</a>
+- <a href="/docs/3_run_example/runexample-migraphx.md">3.3: Run an Example with MIGraphX</a>
 
-2. Download the C++ package for TensorFlow/PyTorch+ZenDNN.
+### Step 4: Deploy Your Own Model
 
-    1. Go to https://developer.amd.com/zendnn/
-    2. Download the file
-        1. For TensorFlow: TF_v2.9_ZenDNN_v3.3_C++_API.zip
-        2. For PyTorch: PT_v1.11.0_ZenDNN_v3.3_C++_API.zip
-    3. Copy the downloaded package within the repository. Use the package for the next steps in the setup.
+The following pages outline how to prune, quantize, and deploy the trained model on different target platforms to check performance optimization:
 
-3. Build the Docker with TensorFlow/PyTorch+ZenDNN.
+- <a href="/docs/4_deploy_your_own_model/prune_model/prunemodel.md">4.1: Prune Model with UIF Optimizer</a>
+- <a href="/docs/4_deploy_your_own_model/quantize_model/quantizemodel.md">4.2: Quantize Model with UIF Quantizer for Target Platforms</a>
+- <a href="/docs/4_deploy_your_own_model/deploy_model/deployingmodel.md">4.3: Deploy Model for Target Platforms</a>
+- <a href="/docs/4_deploy_your_own_model/serve_model/servingmodelwithinferenceserver.md">4.4: Serve Model with Inference Server</a>
 
-    Currently, these images are not pre-built, so you must build them. You must enable Docker BuildKit by setting `export DOCKER_BUILDKIT=1` in the environment.  To build the Docker image with TensorFlow/PyTorch+ZenDNN, use the following command:
-    1. For TensorFlow
-        ```
-        ./proteus dockerize --tfzendnn=TF_v2.9_ZenDNN_v3.3_C++_API.zip
-        ```
-    2. For PyTorch
-        ```
-        ./proteus dockerize --ptzendnn=PT_v1.11.0_ZenDNN_v3.3_C++_API.zip
-        ```
+### Step 5: Debugging and Profiling
 
-    This builds a Docker image with all the dependencies required for the AMD Inference Server and sets up TensorFlow/PyTorch+ZenDNN within the image for further usage.
+The following pages outline debugging and profiling strategies:
 
-    **Note:** The downloaded package must be inside the inference-server folder since the Docker will not be able to access the file outside the repository.
+ - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#51-debug-on-gpu">5.1: Debug on GPU</a>
+ - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#52-debug-on-cpu">5.2: Debug on CPU</a>
+ - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#53-debug-on-fpga">5.3: Debug on FPGA</a>
 
-# Quick Start
-The quick start section introduces using the ZenDNN optimized models with TensorFlow and PyTorch and getting started using the AMD Inference Server.
+<hr/>
 
-### Run Examples with TensorFlow+ZenDNN
+ [Next >](/docs/1_installation/installation.md)
 
-Install TensorFlow+ZenDNN. For more information, see the [Installation section](#tensorflowzendnn).
+ <hr/>
 
-This tutorial uses ResNet50 as an example. Download the ResNet50 model. For more information, see the [UIF Model Setup section](#uif-model-setup).
 
-1. Unzip the model package.
-    ```
-    unzip tf_resnetv1_50_imagenet_224_224_6.97G_2.5_1.0_Z3.3.zip
-    ```
-
-2. Run the run_bench.sh script for FP32 model and run_bench_quant.sh for Quantized model to benchmark the performance of ResNet50
-
-    ```
-    cd tf_resnetv1_50_imagenet_224_224_6.97G_2.5_1.0_Z3.3
-    bash run_bench.sh 64 640
-    bash run_bench_quant.sh 64 640
-    ```
-Similarly, use the `run_eval` scripts for validating the accuracy. To set up the validation data, refer to the readme files provided with the model package.
-
-### Run Examples with PyTorch+ZenDNN
-
-Install PyTorch+ZenDNN. For more information, see the [Installation section](#pytorchzendnn).
-
-This tutorial uses personreid-resnet50 as an example. Download the personreid-resnet50 model as described in the [UIF Model Setup section](#uif-model-setup).
-
-1. Unzip the model package.
-    ```
-    unzip pt_personreid-res50_market1501_256_128_5.3G_2.5_1.0_Z3.3.zip
-    ```
-
-2. Check the <code>readme.md</code> file for required dependencies. Run the `run_bench.sh` script for FP32 model to benchmark the performance of personreid-resnet50.
-
-    ```
-    cd pt_personreid-res50_market1501_256_128_5.3G_2.5_1.0_Z3.3
-    bash run_bench.sh 64 640
-    ```
-Similarly, use the `run_eval` scripts for validating the accuracy. To set up the validation data, refer to the readme files provided with the model package.
-## Run Examples with Inference Server
-
-There are two examples provided in the repo (Python API and C++ API) for both TensorFlow and PyTorch.
-
-### Get Objects (Models/Images)
-Run the following command to get some git lfs assets for examples.
-
-```
-git lfs fetch --all
-git lfs pull
-```
-
-To run the examples and test cases, download some models. Run the following command to download ResNet50 TensorFlow and PyTorch models.
-```
-./proteus get
-```
-
-### Set Up Docker Container
-
-1. Run the container.
-
-    By default, the stable dev Docker image is built from [Inference Server Setup](#inference-server-setup). To run the container, use the following command:
-    ```
-    ./proteus run --dev
-    ```
-
-2. Build the AMD Inference Server.
-
-    Now that the environment is set up within the Docker container, you can build the AMD Inference Server. The following command builds the stable debug build of the AMD Inference Server:
-    ```
-    ./proteus build --debug
-    ```
-    **Note:** If you are switching containers and the build folder already exists in the inference-server folder, use `--regen --clean` flags to regenerate CMakeFiles and do a clean build to avoid any issues.
-
-
-#### Python API
-
-Both the Python examples do the following:
-1. Start the AMD Inference Server on HTTP port 8998.
-2. Load the AMD Inference Server with the specified model file.
-3. Read the specified image and perform preprocessing.
-4. Send the images to the AMD Inference Server over HTTP, wrapped in a specific format.
-5. Get the result back from the AMD Inference Server.
-6. Postprocess, if required, and display the output.
-
-Follow the steps below to run the examples:
-1. TensorFlow+ZenDNN
-
-    ```
-    python examples/python/tf_zendnn.py --graph ./external/tensorflow_models/resnet_v1_50_baseline_6.96B.pb --image_location ./tests/assets/dog-3619020_640.jpg
-    ```
-2. PyTorch+ZenDNN
-
-    ```
-    python examples/python/pt_zendnn.py --graph ./external/pytorch_models/resnet50_pretrained.pt --image_location ./tests/assets/dog-3619020_640.jpg
-    ```
-
-
-#### C++ API
-
-The C++ API bypasses the HTTP server and connects directly to the Inference Server. The flow is as follows:
-1. Load the AMD Inference Server for the specified model file.
-2. Read the specified image and perform preprocessing.
-3. Pack the data into an interface object and push it to a queue.
-4. Retrieve the result back from the AMD Inference Server.
-5. Postprocess, if required, and display the output.
-
-The C++ example is built when the server is built according to the available package. To build and run the example, use the following command.
-
-1. TensorFlow+ZenDNN
-
-    ```
-    ./proteus build --debug && ./build/Debug/examples/cpp/tf_zendnn_client
-    ```
-2. PyTorch+ZenDNN
-
-    ```
-    ./proteus build --debug && ./build/Debug/examples/cpp/pt_zendnn_client
-    ```
-# Sample Run with TensorFlow+ZenDNN
-
-The repo consists of a sample to run a demo application. The demo loads images from a given folder, infers on the images with the given TensorFlow model, and prints out Top1 and Top5 classes.
-
-## Preparation
-
-1. Set up the environment.
-
-    Install TensorFlow+ZenDNN. For more information, see the [Installation section](#tensorflowzendnn). Pillow is required, and you can install it with the following command.
-    ```
-    pip install pillow
-    ```
-
-2. Download the models.
-
-    Download the TensorFlow Image Recognition (ResNet50, InceptionV3, MobileNetv1, VGG16) model from the model zoo. For more information, see the [model setup section](#uif-model-setup).
-
-3. Get data.
-
-    Due to copyright reasons, images are not included with this sample.
-
-    To use the sample, create a directory and copy the required images into the folder. The images in this folder are used for inference.
-
-## Run Sample
-
-To run the sample, change the directory into the samples directory. Use the following command with the correct parameters:
-```
-python tf_sample.py \
-    --model_file <model_file_path> \
-    --input_height <input_height> \
-    --input_width <input_width> \
-    --input_layer <input_layer_name> \
-    --output_layer <output_layer_name> \
-    --data_resize_method <preprocess_method> \
-    --batch_size <batch_size> \
-    --data_location <data_location_path>
-```
-
-### Parameter Descriptions
-```
---model_file:         Graph/model to be used for inference (.pb file)
---input_height:       Height for the image
---input_width:        Width for the image
---input_layer:        Name of the input node of the model
---output_layer:       Name of the output node of the model
---data_resize_method: Preprocessing method to be used for the model (ResNet50, VGG16: cropwithmeansub. InceptionV3, MobileNetv1: bilinear)
---batch_size:         Batch size to be used for inference. If the total number of images is less than the batch size given, the number of images will be used as the batch size
---data_location:      Path to the directory containing the images to be used for inference
-```
-
-### Example
-This tutorial uses ResNet50 as an example. To run the model, refer to [TensorFlow+ZenDNN Example Run Section](#run-examples-with-tensorflowzendnn). To run for a single image:
-```
-python tf_sample.py \
- --model_file /path/to/resnet_v1_50_inference.pb \
- --input_height 224 \
- --input_width 224 \
- --input_layer input \
- --output_layer resnet_v1_50/predictions/Reshape_1 \
- --data_resize_method cropwithmeansub \
- --batch_size 64 \
- --data_location /path/to/image_directory
-```
 # License
 
 UIF is licensed under [Apache License Version 2.0](LICENSE). Refer to the [LICENSE](LICENSE) file for the full license text and copyright notice.
 
 # Technical Support
-Please email uif_support@amd.com for questions, issues, and feedback on UIF.
 
-Please submit your questions, feature requests, and bug reports on the
-[GitHub issues](https://github.com/amd/UIF/issues) page.
+Contact uif_support@amd.com for questions, issues, and feedback on UIF.
 
-# Disclaimer
-The information presented in this document is for informational purposes only and may contain technical inaccuracies, omissions, and typographical errors. The information contained herein is subject to change and may be rendered inaccurate for many reasons, including but not limited to product and roadmap changes, component and motherboard version changes, new model and product releases, product differences between differing manufacturers, software changes, BIOS flashes, firmware upgrades, or the like. Any computer system has risks of security vulnerabilities that cannot be completely prevented or mitigated. Neither AMD nor any of its affiliates and subsidiaries (individually and collectively, “AMD”) assume any obligation to update or otherwise correct or revise this information. However, AMD reserves the right to revise this information and to make changes from time to time to the content hereof without obligation of AMD to notify any person of such revisions or changes.
-THIS INFORMATION IS PROVIDED "AS IS.” AMD MAKES NO REPRESENTATIONS OR WARRANTIES WITH RESPECT TO THE CONTENTS HEREOF AND ASSUMES NO RESPONSIBILITY FOR ANY INACCURACIES, ERRORS, OR OMISSIONS THAT MAY APPEAR IN THIS INFORMATION. AMD SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN NO EVENT WILL AMD BE LIABLE TO ANY PERSON FOR ANY RELIANCE, DIRECT, INDIRECT, SPECIAL, OR OTHER CONSEQUENTIAL DAMAGES ARISING FROM THE USE OF ANY INFORMATION CONTAINED HEREIN, EVEN IF AMD IS EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+Submit your questions, feature requests, and bug reports on the [GitHub issues](https://https://github.com/amd/UIF/issues) page.
 
-AMD, the AMD Arrow logo, AMD EPYC&trade;, AMD Ryzen&trade;, AMD CDNA&trade;, AMD RDNA&trade;,  Versal&reg; ACAP, Xilinx, the Xilinx logo, Alveo&trade;, Artix&trade;, ISE&reg;, Kintex&trade;, Spartan&trade;, Virtex&trade;, Zynq&trade;, and other designated brands included herein and combinations thereof are trademarks of Advanced Micro Devices, Inc. Other product names used in this publication are for identification purposes only and may be trademarks of their respective companies. Ubuntu and the Ubuntu logo are registered trademarks of Canonical Ltd. Red Hat and the Shadowman logo are registered trademarks of Red Hat, Inc. www.redhat.com in the U.S. and other countries. The CentOS Marks are trademarks of Red Hat, Inc.
+# AMD Copyright Notice and Disclaimer
+
+© 2022–2023 Advanced Micro Devices, Inc. All rights reserved
+
+The information presented in this document is for informational purposes only and may contain technical inaccuracies, omissions, and typographical errors. The information contained herein is subject to change and may be rendered inaccurate for many reasons, including but not limited to product and roadmap changes, component and motherboard version changes, new model and/or product releases, product differences between differing manufacturers, software changes, BIOS flashes, firmware upgrades, or the like. Any computer system has risks of security vulnerabilities that cannot be completely prevented or mitigated. AMD assumes no obligation to update or otherwise correct or revise this information. However, AMD reserves the right to revise this information and to make changes from time to time to the content hereof without obligation of AMD to notify any person of such revisions or changes.
+
+THIS INFORMATION IS PROVIDED “AS IS.” AMD MAKES NO REPRESENTATIONS OR WARRANTIES WITH RESPECT TO THE CONTENTS HEREOF AND ASSUMES NO RESPONSIBILITY FOR ANY INACCURACIES, ERRORS, OR OMISSIONS THAT MAY APPEAR IN THIS INFORMATION. AMD SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, OR FITNESS FOR ANY PARTICULAR PURPOSE. IN NO EVENT WILL AMD BE LIABLE TO ANY PERSON FOR ANY RELIANCE, DIRECT, INDIRECT, SPECIAL, OR OTHER CONSEQUENTIAL DAMAGES ARISING FROM THE USE OF ANY INFORMATION CONTAINED HEREIN, EVEN IF AMD IS EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+AMD, the AMD Arrow logo, ROCm™, ROCm™, Radeon™, AMD Instinct™, Radeon Instinct™, Radeon Pro™, RDNA™, CDNA™ and combinations thereof are trademarks of Advanced Micro Devices, Inc. 
+
+The CentOS Marks are trademarks of Red Hat, Inc. Docker and the Docker logo are trademarks or registered trademarks of Docker, Inc. Kubernetes is a registered trademark of The Linux Foundation. Linux is the registered trademark of Linus Torvalds in the U.S. and other countries. Red Hat and the Shadowman logo are registered trademarks of Red Hat, Inc. www.redhat.com in the U.S. and other countries.
+Ubuntu and the Ubuntu logo are registered trademarks of Canonical Ltd.
+
+Other product names used in this publication are for identification purposes only and may be trademarks of their respective companies. 
+
+Third-party content is licensed to you directly by the third party that owns the content and is not licensed to you by AMD. ALL LINKED THIRD-PARTY CONTENT IS PROVIDED “AS IS” WITHOUT A WARRANTY OF ANY KIND. USE OF SUCH THIRD-PARTY CONTENT IS DONE AT YOUR SOLE DISCRETION AND UNDER NO CIRCUMSTANCES WILL AMD BE LIABLE TO YOU FOR ANY THIRD-PARTY CONTENT. YOU ASSUME ALL RISK AND ARE SOLELY RESPONSIBLE FOR ANY DAMAGES THAT MAY ARISE FROM YOUR USE OF THIRD-PARTY CONTENT.
+
+ROCm is made available by Advanced Micro Devices, Inc. under the open source license identified in the top-level directory for the library in the repository on Github.com (Portions of ROCm are licensed under MITx11 and UIL/NCSA. For more information on the license, review the license.txt in the top-level directory for the library on Github.com). The additional terms and conditions below apply to your use of ROCm technical documentation.
+
+AQL PROFILER IS SUBJECT TO THE LICENSE AGREEMENT ENCLOSED IN THE DIRECTORY FOR THE AQL PROFILER AND IS AVAILABLE HERE: /usr/share/doc/hsa-amd-aqlprofile1.0.0/copyright. BY USING, INSTALLING, COPYING, OR DISTRIBUTING THE AQL PROFILER, YOU AGREE TO THE TERMS AND CONDITIONS OF THIS LICENSE AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT INSTALL, COPY, OR USE THE AQL PROFILER.
+
+AOCC CPU OPTIMIZATIONS BINARY IS SUBJECT TO THE LICENSE AGREEMENT ENCLOSED IN THE DIRECTORY FOR THE BINARY AND IS AVAILABLE HERE: /opt/rocm-5.0.0/share/doc/rocm-llvm-alt/EULA. BY USING, INSTALLING, COPYING, OR DISTRIBUTING THE AOCC CPU OPTIMIZATIONS, YOU AGREE TO THE TERMS AND CONDITIONS OF THIS LICENSE AGREEMENT. IF YOU DO NOT AGREE TO THE TERMS OF THIS AGREEMENT, DO NOT INSTALL, COPY, OR USE THE AOCC CPU OPTIMIZATIONS.
+
+#### ZD036:
+
+Testing conducted by AMD Performance Labs as of Thursday, January 12, 2023, on the ZenDNN v4.0 software library, Xilinx Vitis AI Model Zoo 3.0, on test systems comprising of AMD Eng Sample of the EPYC 9004 96-core processor, dual socket, with hyperthreading on, 2150 MHz CPU frequency (Max 3700 MHz), 786GB RAM (12 x 64GB DIMMs @ 4800 MT/s; DDR5 - 4800MHz 288-pin Low Profile ECC Registered RDIMM 2RX4), NPS1 mode, Ubuntu® 20.04.5 LTS version, kernel version 5.4.0-131-generic, BIOS TQZ1000F, GCC/G++ version 11.1.0, GNU ID 2.31, Python 3.8.15, AOCC version 4.0, AOCL BLIS version 4.0, TensorFlow version 2.10. Pruning was performed by the Xilinx Vitis AI pruning and quantization tool v3.0. Performance may vary based on use of latest drivers and other factors. ZD036
+
+#### ZD041:
+
+Testing conducted by AMD Performance Labs as of Wednesday, January 18, 2023, on test systems comprising of: AMD MI100, 1200 MHz CPU frequency, 8x32GB GPU Memory, NPS1 mode, Ubuntu® 20.04 version, kernel version 4.15.0-166-generic, BIOS 2.5.6, GCC/G++ version 9.4.0, GNU ID 2.34, Python 3.7.13, xcompiler version 3.0.0, pytorch-nndct version 3.0.0, xir version 3.0.0, target_factory version 3.0.0, unilog version 3.0.0, ROCm version 5.4.1.50401-84~20.04. Pruning was performed by the Xilinx Vitis AI pruning and quantization tool v3.0. Performance may vary based on use of latest drivers and other factors. ZD-041
 
 
-© 2022 Advanced Micro Devices, Inc. All rights reserved
+
+

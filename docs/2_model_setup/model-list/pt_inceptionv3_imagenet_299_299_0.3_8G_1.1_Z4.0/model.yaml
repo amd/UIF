@@ -1,0 +1,30 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: inceptionv3 prune0.3 model for image classification.
+input size: 299x299
+float ops: 8G
+task: image classfication
+framework: pytorch
+prune: 'yes'
+version: 1.1
+files:
+- name: pt_inceptionv3_imagenet_299_299_0.3_8G_1.1_Z4.0
+  type: float and quantized
+  board: CPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inceptionv3_imagenet_299_299_0.3_8G_1.1_Z4.0.zip
+  checksum: 4f935ea76ab49d172c401efc3f3f923c
+license: https://github.com/amd/UIF/blob/main/LICENSE
+

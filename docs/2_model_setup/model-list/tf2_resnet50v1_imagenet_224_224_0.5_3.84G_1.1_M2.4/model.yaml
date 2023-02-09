@@ -1,0 +1,39 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: ResNet50 pruned model for classification.
+input size: '224'
+float ops: 3.84G
+task: classification
+framework: tensorflow2
+prune: 'yes'
+version: 1.1
+files:
+- name: tf2_resnet50v1_imagenet_224_224_0.5_3.84G_1.1_M2.4
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_resnet50v1_imagenet_224_224_0.5_3.84G_1.1_M2.4.zip
+  checksum: 0cba275a9270d1ffc049e27182084149
+- name: tf2_resnet50v1_imagenet_224_224_0.5_3.84G_1.1_M2.4_MI100 
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_resnet50v1_imagenet_224_224_0.5_3.84G_1.1_M2.4_MI100.zip
+  checksum: 86e5322b15b5676e888f9e557181961e
+- name: tf2_resnet50v1_imagenet_224_224_0.5_3.84G_1.1_M2.4_MI210
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_resnet50v1_imagenet_224_224_0.5_3.84G_1.1_M2.4_MI210.zip
+  checksum: 4a82b71b602155318cf69687131a844a
+license: https://github.com/amd/UIF/blob/main/LICENSE

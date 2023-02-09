@@ -1,0 +1,30 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: mobilenetv1 for classification.
+input size: '224'
+float ops: 1.02G
+task: classification
+framework: onnxruntime
+prune: '0.11'
+version: 1.1
+files:
+- name: onnx_mobilenetv1_1.0_imagenet_224_224_0.11_1.02G_1.1_Z4.0
+  type: float
+  board: CPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=onnx_mobilenetv1_1.0_imagenet_224_224_0.11_1.02G_1.1_Z4.0.zip
+  checksum: 74b4c78a6a76249547e1e93a6940616e
+license: https://github.com/amd/UIF/blob/main/LICENSE
+

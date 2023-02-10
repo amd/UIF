@@ -12,7 +12,7 @@ Unified Inference Frontend (UIF) is an effort to consolidate the following compu
 - AMD Instinct™ GPUs
 - AMD Ryzen&trade; processors
 - Versal&trade; ACAP
-- Field programmable gate arrays (FPGAs)
+- Field Programmable Gate Arrays (FPGAs)
 
 UIF accelerates deep learning inference applications on all AMD compute platforms for popular machine learning frameworks, including TensorFlow, PyTorch, and ONNXRT. It consists of tools, libraries, models, and example designs optimized for AMD platforms that enable deep learning applications and framework developers to improve inference performance across various workloads such as computer vision, natural language processing, and recommender systems.
 
@@ -23,7 +23,7 @@ UIF accelerates deep learning inference applications on all AMD compute platform
 
 # Unified Inference Frontend 1.1
 
-UIF 1.1 extends the support to AMD Instinct GPUs in addition to EPYC CPUs starting from UIF 1.0. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for Instinct GPUs for Deep Learning Inference. UIF 1.1 provides 45 optimized models for Instinct GPUs and 75+ for EPYC CPUs. The Vitis&trade; AI Optimizer tool is released as part of the Vitis AI 3.0 stack. UIF Quantizer is released in the in the PyTorch and TensorFlow Docker® images. Leveraging the UIF Optimizer and Quantizer enables performance benefits for customers when running with the MIGraphX and ZenDNN backends for Instinct GPUs and EPYC CPUs, respectively. This release also adds MIGraphX backend for [AMD Inference Server](https://github.com/Xilinx/inference-server). This document provides information about downloading, building, and running the UIF 1.1 release.
+UIF 1.1 extends the support to AMD Instinct GPUs in addition to EPYC CPUs starting from UIF 1.0. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for Instinct GPUs for Deep Learning Inference. UIF 1.1 provides 45 optimized models for Instinct GPUs and 84 for EPYC CPUs. The Vitis&trade; AI Optimizer tool is released as part of the Vitis AI 3.0 stack. UIF Quantizer is released in the PyTorch and TensorFlow Docker® images. Leveraging the UIF Optimizer and Quantizer enables performance benefits for customers when running with the MIGraphX and ZenDNN backends for Instinct GPUs and EPYC CPUs, respectively. This release also adds MIGraphX backend for [AMD Inference Server](https://github.com/Xilinx/inference-server). This document provides information about downloading, building, and running the UIF 1.1 release.
 
 ## AMD Instinct GPU
 
@@ -36,8 +36,8 @@ UIF 1.1 also introduces tools for optimizing inference models. GPU support inclu
 The highlights of this release are as follows:
 
 ZenDNN:
-* TensorFlow and PyTorch with ZenDNN packages for download (from the ZenDNN web site)
-* 75+ float, INT8 quantized and/or pruned models enabled to be run on TensorFlow+ZenDNN and PyTorch+ZenDNN
+* TensorFlow, PyTorch, and ONNXRT with ZenDNN packages for download (from the ZenDNN web site)
+* 84 model packages containing FP32/BF16/INT8 models enabled to be run on TensorFlow+ZenDNN, PyTorch+ZenDNN and ONNXRT+ZenDNN
 * Up to 20.5x the throughput (images/second) running Medical EDD RefineDet with the Xilinx Vitis AI Model Zoo 3.0 88% pruned INT8 model on 2P AMD Eng Sample: 100-000000894-04
 of the EPYC 9004 96-core processor powered server with ZenDNN v4.0 compared to the baseline FP32 Medical EDD RefineDet model from the same Model Zoo. ([ZD-036](#zd036))
 * Docker containers for running AMD Inference Server

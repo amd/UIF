@@ -306,7 +306,7 @@ UIF 1.1 Model Zoo provides 30 models for AMD Instinct™ GPUs (MIGraphX) and 84 
 ### 2.1.1: Standard Naming Rules
 
 Model name: `F_M_(D)_H_W_(P)_C_V_Z`
-* `F` specifies the training framework: `tf` is TensorFlow 1.x, `tf2` is TensorFlow 2.x, `pt` is PyTorch.
+* `F` specifies the training framework: `tf` is TensorFlow 1.x, `tf2` is TensorFlow 2.x, `pt` is PyTorch, `onnx` is ONNXRT.
 * `M` specifies the model.
 * `D` specifies the dataset. It is optional depending on whether the dataset is public or private.
 * `H` specifies the height of input data.
@@ -341,7 +341,7 @@ Perform the following steps to install UIF 1.1 models:
     ```
     Tip:
     You need to input framework and model name, use space divide such as tf vgg16
-    tf:tensorflow1.x  tf2:tensorflow2.x  cf:caffe  dk:darknet  pt:pytorch  all: list all model
+    tf:tensorflow1.x  tf2:tensorflow2.x  onnx:onnxruntime  dk:darknet  pt:pytorch  all: list all model
     input:
     ```
 2. Download UIF 1.1 TensorFlow+ZenDNN models. Provide `tf` as input to get the list of models.
@@ -385,10 +385,45 @@ Perform the following steps to install UIF 1.1 models:
 	input:pt
 	chose model
 	0 : all
-	1 : pt_resnet50_imagenet_224_224_8.2G_1.1_Z4.0
-	2 : pt_resnet50_imagenet_224_224_0.3_5.8G_1.1_Z4.0
-	3 : pt_resnet50_imagenet_224_224_0.4_4.9G_1.1_Z4.0
-	4 : pt_resnet50_imagenet_224_224_0.5_4.1G_1.1_Z4.0
+    1 : pt_inceptionv3_imagenet_299_299_11.4G_1.1_M2.4
+    2 : pt_3dunet_kits19_128_128_128_0.3_763.8G_1.1_Z4.0
+    3 : pt_bert_base_SQuADv1.1_384_70.66G_1.1_M2.4
+    4 : pt_bert_large_SQuADv1.1_384_246.42G_1.1_M2.4
+    5 : pt_personreid-res50_market1501_256_128_0.4_3.3G_1.1_Z4.0
+    ...
+	...
+	input num:
+    ```
+    Models with 1.1 as suffix are UIF 1.1 models. Provide the model number corresponding to the required model as input. For example, select `3` for resnet50 pruned 40% model.
+
+    ```
+	input num:2
+	chose model type
+	0: all
+	1 : CPU
+	
+	...
+	...
+    input num:
+    ```
+    Provide `1` as input to download the UIF 1.1 ZenDNN CPU model.
+    ```
+	input num:1
+    pt_3dunet_kits19_128_128_128_0.3_763.8G_1.1_Z4.0.zip
+	                                              100.0%|100%
+	done
+    ```
+
+4. Download UIF 1.1 ONNXRT+ZenDNN models. Provide `onnx` as input to get the list of models.
+
+    ```
+	input:onnx
+    chose model
+    0 : all
+    1 : onnx_vgg16_imagenet_224_224_30.96G_1.1_Z4.0
+    2 : onnx_inceptionv3_imagenet_299_299_0.4_6.9G_1.1_Z4.0
+    3 : onnx_resnetv1_50_imagenet_224_224_0.38_4.3G_1.1_Z4.0
+    4 : onnx_mobilenetv1_1.0_imagenet_224_224_1.14G_1.1_Z4.0
     ...
 	...
 	input num:
@@ -408,7 +443,7 @@ Perform the following steps to install UIF 1.1 models:
     Provide `1` as input to download the UIF 1.1 ZenDNN CPU model.
     ```
 	input num:1
-    pt_resnet50_imagenet_224_224_0.4_4.9G_1.1_Z4.0.zip
+    onnx_resnetv1_50_imagenet_224_224_0.38_4.3G_1.1_Z4.0.zip
 	                                              100.0%|100%
 	done
     ```
@@ -429,7 +464,7 @@ Perform the following steps to install UIF 1.1 models:
     ```
     Tip:
     You need to input framework and model name, use space divide such as tf vgg16
-    tf:tensorflow1.x  tf2:tensorflow2.x  cf:caffe  dk:darknet  pt:pytorch  all: list all model
+    tf:tensorflow1.x  tf2:tensorflow2.x  onnx:onnxruntime  dk:darknet  pt:pytorch  all: list all model
     input:
     ```
 2. Download UIF 1.1 GPU models. Provide `pt` as input to get the list of models.
@@ -438,9 +473,11 @@ Perform the following steps to install UIF 1.1 models:
 	input:pt
 	chose model
 	0 : all
-	1 : pt_resnet50v1.5_imagenet_224_224_8.2G_1.1_M2.4.zip
-	2 : pt_resnet50v1.5_imagenet_224_224_8.2G_1.1_M2.4_MI100.zip
-	3 : pt_resnet50v1.5_imagenet_224_224_8.2G_1.1_M2.4_MI210.zip
+    1 : pt_inceptionv3_imagenet_299_299_11.4G_1.1_M2.4
+    2 : pt_3dunet_kits19_128_128_128_0.3_763.8G_1.1_Z4.0
+    3 : pt_bert_base_SQuADv1.1_384_70.66G_1.1_M2.4
+    4 : pt_bert_large_SQuADv1.1_384_246.42G_1.1_M2.4
+    5 : pt_personreid-res50_market1501_256_128_0.4_3.3G_1.1_Z4.0
 
 	...
 	input num:
@@ -454,7 +491,7 @@ The models with 1.1 as suffix are UIF 1.1 models. MI100 means the model has been
 	0: all
 	1: GPU
 	2: MI100
-	3: MI210
+	3: MI200
 	...
 	...
     input num:
@@ -465,7 +502,7 @@ Provide `1` as input to download the GPU model.
 
     ```
     input num:1
-    pt_resnet50v1.5_imagenet_224_224_8.2G_1.1_M2.4.zip
+    pt_inceptionv3_imagenet_299_299_11.4G_1.1_M2.4.zip
 	                                              100.0%|100%
 	done
     ```

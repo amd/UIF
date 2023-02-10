@@ -100,7 +100,7 @@ The following platforms are supported for UIF 1.1:
 
 ## 4.3.2.1: Run UIF Models with ZenDNN
 
-This section introduces using the ZenDNN optimized models with TensorFlow and PyTorch.
+This section introduces using the ZenDNN optimized models with TensorFlow, PyTorch and ONNXRT.
 
 ### Run Examples with TensorFlow+ZenDNN
 
@@ -111,13 +111,13 @@ This tutorial uses ResNet50 as an example. Download the ResNet50 model. For more
 1. Unzip the model package:
 
     ```
-    unzip tf_resnetv1_50_imagenet_224_224_6.97G_3.0_1.1_Z4.0.zip
+    unzip tf_resnetv1_50_imagenet_224_224_6.97G_1.1_Z4.0.zip
     ```
 
-2. Run the run_bench.sh script for FP32 model and run_bench_quant.sh for the quantized model to benchmark the performance of ResNet-50:
+2. Check the <code>readme.md</code> file for required dependencies. Run the `run_bench.sh` script for FP32 model and `run_bench_quant.sh` for the quantized model to benchmark the performance of ResNet-50:
 
     ```
-    cd tf_resnetv1_50_imagenet_224_224_6.97G_3.0_1.1_Z4.0
+    cd tf_resnetv1_50_imagenet_224_224_6.97G_1.1_Z4.0
     bash run_bench.sh 64 640
     bash run_bench_quant.sh 64 640
     ```
@@ -133,14 +133,36 @@ This tutorial uses personreid-resnet50 as an example. Download the personreid-re
 1. Unzip the model package.
 
     ```
-    unzip pt_personreid-res50_market1501_256_128_5.3G_3.0_1.1_Z4.0.zip
+    unzip pt_personreid-res50_market1501_256_128_5.3G_1.1_Z4.0.zip
     ```
 
-2. Check the <code>readme.md</code> file for required dependencies. Run the `run_bench.sh` script for FP32 model to benchmark the performance of personreid-resnet50.
+2. Check the <code>readme.md</code> file for required dependencies. Run the `run_bench.sh` script for FP32 model and `run_bench_quant.sh` for the quantized model to benchmark the performance of personreid-resnet50.
 
     ```
-    cd pt_personreid-res50_market1501_256_128_5.3G_3.0_1.1_Z4.0
+    cd pt_personreid-res50_market1501_256_128_5.3G_1.1_Z4.0
     bash run_bench.sh 64 640
+    bash run_bench_quant.sh 64 640
+    ```
+Similarly, use the `run_eval` scripts for validating the accuracy. To set up the validation data, refer to the readme files provided with the model package.
+
+### Run Examples with ONNXRT+ZenDNN
+
+Install ONNXRT+ZenDNN. For more information, see the [Installation](/docs/1_installation/installation.md#133-onnxrtzendnn) section.
+
+This tutorial uses ResNet50 as an example. Download the ResNet50 model as described in the [UIF Model Setup section](/docs/2_model_setup/uifmodelsetup.md).
+
+1. Unzip the model package.
+
+    ```
+    unzip onnx_resnetv1_50_imagenet_224_224_6.97G_1.1_Z4.0.zip
+    ```
+
+2. Check the <code>readme.md</code> file for required dependencies. Run the `run_bench.sh` script for FP32 model and `run_bench_quant.sh` for the quantized model to benchmark the performance of ResNet50.
+
+    ```
+    cd onnx_resnetv1_50_imagenet_224_224_6.97G_1.1_Z4.0
+    bash run_bench.sh 64 640
+    bash run_bench_quant.sh 64 640
     ```
 Similarly, use the `run_eval` scripts for validating the accuracy. To set up the validation data, refer to the readme files provided with the model package.
 
@@ -148,7 +170,7 @@ Similarly, use the `run_eval` scripts for validating the accuracy. To set up the
 
 ### Float Models
 
-   To run any single-precision (float) custom model on ZenDNN, follow the steps given in the [ZenDNN Installation section](/docs/1_installation/installation.md#13-install-zendnn-package-for-cpu-users) to install TensorFlow+ZenDNN or PyTorch+ZenDNN. Once installation is complete, the model can be run with standard inference steps. One such example is provided in the [example section](/docs/3_run_example/runexample-script.md#311-sample-run-with-tensorflowzendnn).
+   To run any single-precision (float) custom model on ZenDNN, follow the steps given in the [ZenDNN Installation section](/docs/1_installation/installation.md#13-install-zendnn-package-for-cpu-users) to install TensorFlow+ZenDNN, PyTorch+ZenDNN or ONNXRT+ZenDNN. Once installation is complete, the model can be run with standard inference steps. One such example is provided in the [example section](/docs/3_run_example/runexample-script.md#311-sample-run-with-tensorflowzendnn).
 
 ### Model Compression Techniques for ZenDNN
 
@@ -197,7 +219,7 @@ To make use of the ZenDNN model converter tool:
    --out_location ./outputs/
    ```
    
-   The result is an optimized graph that will be saved at the desired output location. The model will be saved with the same name appended with `amd_opt.pb`. In the example, the model will be saved as `quantized_pruned_19.56B_amd_opt.pb` to the `outputs` folder. This optimized model can then be run on AMD CPUs through ZenDNN. Refer to the [AMD page for ZenDNN](https://www.amd.com/en/developer/zendnn.html) for more info.
+   The result is an optimized graph that will be saved at the desired output location. The model will be saved with the same name appended with `_amd_opt.pb`. In the example, the model will be saved as `quantized_pruned_19.56B_amd_opt.pb` to the `outputs` folder. This optimized model can then be run on AMD CPUs through ZenDNN. Refer to the [AMD page for ZenDNN](https://www.amd.com/en/developer/zendnn.html) for more info.
 
    **Note:** Currently only TensorFlow models quantized using the UIF Quantizer tool are supported with model converter tool.
 

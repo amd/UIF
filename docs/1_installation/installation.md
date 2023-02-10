@@ -22,6 +22,7 @@
  - [1.3: Install ZenDNN Package (for CPU Users)](#13-install-zendnn-package-for-cpu-users)
     - [1.3.1: TensorFlow+ZenDNN](#131-tensorflowzendnn)
     - [1.3.2: PyTorch+ZenDNN](#132-pytorchzendnn)
+    - [1.3.3: ONNXRT+ZenDNN](#133-onnxrtzendnn)
  - [1.4: Get the Inference Server Docker Image (for Model Serving)](#14-get-the-inference-server-docker-image-for-model-serving)
     - [1.4.1: Use a Prebuilt Docker Image](#141-use-a-prebuilt-docker-image)
     - [1.4.2: Build an Inference Server Docker Image](#142-build-an-inference-server-docker-image)
@@ -173,10 +174,29 @@ To run inference on the PyTorch model using ZenDNN, download and install the PyT
 3. Ensure that you have the conda environment installed, and execute the following commands:
 
     ```
-    cd PT_v1.12.0_ZenDNN_v4.0_Python_v*/ZenDNN/
+    cd PT_v1.12.0_ZenDNN_v4.0_Python_v*/
     source scripts/PT_ZenDNN_setup_release.sh
     ```
     PyTorch+ZenDNN installation completes.
+
+### 1.3.3: ONNXRT+ZenDNN
+
+To run inference on the ONNXRT model using ZenDNN, download and install the ONNXRT+ZenDNN package. Perform the following steps to complete the ONNXRT+ZenDNN installation:
+
+1. Download ONNXRTv1.12.1+ZenDNN_v4.0 release package from the [AMD ZenDNN page](https://www.amd.com/en/developer/zendnn.html).
+
+2. Unzip the package. For example: `ONNXRT_v1.12.1_ZenDNN_v4.0_Python_v3.8.zip`.
+
+    ```
+    unzip ONNXRT_v1.12.1_ZenDNN_v4.0_Python_v3.8.zip
+    ```
+3. Ensure that you have the conda environment installed, and execute the following commands:
+
+    ```
+    cd ONNXRT_v1.12.1_ZenDNN_v4.0_Python_v*/
+    source scripts/ONNXRT_ZenDNN_setup_release.sh
+    ```
+    ONNXRT+ZenDNN installation completes.
 
 # 1.4: Get the Inference Server Docker Image (for Model Serving)
 

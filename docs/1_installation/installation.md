@@ -139,7 +139,7 @@ For instuctions on how to pull a Docker image for the Vitis AI development envir
 
 # 1.3: Install ZenDNN Package (for CPU Users)
 
-Perform the following steps to install TensorFlow and PyTorch built with ZenDNN:
+Perform the following steps to install TensorFlow, PyTorch and ONNXRT built with ZenDNN:
 
 ### 1.3.1: TensorFlow+ZenDNN
 

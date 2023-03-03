@@ -22,7 +22,7 @@ prune: '0.11'
 version: 1.1
 files:
 - name: onnx_mobilenetv1_1.0_imagenet_224_224_0.11_1.02G_1.1_Z4.0
-  type: float
+  type:  float and quantized
   board: CPU
   download link: https://www.xilinx.com/bin/public/openDownload?filename=onnx_mobilenetv1_1.0_imagenet_224_224_0.11_1.02G_1.1_Z4.0.zip
   checksum: 74b4c78a6a76249547e1e93a6940616e

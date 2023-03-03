@@ -17,7 +17,7 @@ description: ResNet V1 152 for ImageNet Classification.
 input size: '224'
 float ops: 21.83G
 task: Image Classification
-framework: TensorFlow 1
+framework: TensorFlow
 prune: 'no'
 version: 1.1
 files:
@@ -25,5 +25,5 @@ files:
   type: float and quantized
   board: CPU
   download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_resnetv1_152_imagenet_224_224_21.83G_1.1_Z4.0.zip
-  checksum: bc64405d1cea8143b33621ec5ce8cc96
+  checksum: 7c62d74dad8abd4f67a0a2eeb4e9dcd8
 license: https://github.com/amd/UIF/blob/main/LICENSE

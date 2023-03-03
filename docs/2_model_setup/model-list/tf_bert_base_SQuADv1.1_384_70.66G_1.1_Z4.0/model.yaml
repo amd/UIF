@@ -21,10 +21,10 @@ framework: tensorflow
 prune: 'no'
 version: 1.1
 files:
-- name: tf_albert_base_SQuADv1.1_384_70.66G_1.1_Z4.0
+- name: tf_bert_base_SQuADv1.1_384_70.66G_1.1_Z4.0
   type: float
   board: CPU
-  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_albert_base_SQuADv1.1_384_70.66G_1.1_Z4.0.zip
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_bert_base_SQuADv1.1_384_70.66G_1.1_Z4.0.zip
   checksum: 84ccbf9e99d578a413b507938b09a7c5
 license: https://github.com/amd/UIF/blob/main/LICENSE
 

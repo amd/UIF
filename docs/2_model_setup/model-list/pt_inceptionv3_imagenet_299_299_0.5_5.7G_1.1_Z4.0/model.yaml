@@ -18,7 +18,7 @@ input size: 299x299
 float ops: 5.7G
 task: image classfication
 framework: pytorch
-prune: 'yes'
+prune: '0.5'
 version: 1.1
 files:
 - name: pt_inceptionv3_imagenet_299_299_0.5_5.7G_1.1_Z4.0

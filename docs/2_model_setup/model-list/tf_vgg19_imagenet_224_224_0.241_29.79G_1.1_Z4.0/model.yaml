@@ -17,8 +17,8 @@ description: VGG 19 moderate pruned for ImageNet Classification.
 input size: '224'
 float ops: 29.79G
 task: Image Classification
-framework: TensorFlow 1
-prune: 'yes'
+framework: TensorFlow
+prune: '0.24'
 version: 1.1
 files:
 - name: tf_vgg19_imagenet_224_224_0.24_29.79G_1.1_Z4.0

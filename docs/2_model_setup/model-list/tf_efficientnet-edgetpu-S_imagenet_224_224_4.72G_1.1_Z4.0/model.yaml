@@ -17,7 +17,7 @@ description: efficientNet-edgetpu-S classifier on ImageNet.
 input size: 224*224
 float ops: 4.72G
 task: classification
-framework: tensorflow1
+framework: tensorflow
 prune: 'no'
 version: 1.1
 files:

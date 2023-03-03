@@ -15,16 +15,16 @@
 
 description: inceptionv3 classifier on ImageNet
 input size: 299*299
-float ops: 6.9G
+float ops: 11.45G
 task: classification
 framework: tensorflow
-prune: 'yes'
+prune: 'no'
 version: 1.1
 files:
-- name: tf_inceptionv3_imagenet_299_299_0.4_6.9G_1.1_Z4.0
+- name: tf_inceptionv3_imagenet_299_299_11.45G_1.1_Z4.0
   type: float and quantized
   board: CPU
-  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_inceptionv3_imagenet_299_299_0.4_6.9G_1.1_Z4.0.zip
-  checksum: ecdbb0f584dcaa0191403eae9f5b4c6b
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_inceptionv3_imagenet_299_299_11.45G_1.1_Z4.0.zip
+  checksum: 2245b82ba034951adc08c0c1e72f4e6b
 license: https://github.com/amd/UIF/blob/main/LICENSE
 

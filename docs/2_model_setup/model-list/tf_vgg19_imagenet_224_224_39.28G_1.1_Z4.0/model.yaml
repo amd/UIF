@@ -1,4 +1,4 @@
-# Copyright 2019 Xilinx Inc.
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,17 +13,18 @@
 # limitations under the License.
 
 
-description: ofa-resnet50 for Image Classification.
-input size: 224*224
-float ops: 6.0G
-task: classification
-framework: pytorch
-prune: '0.6'
+description: VGG 19 for ImageNet Classification.
+input size: '224'
+float ops: 39.28G
+task: Image Classification
+framework: TensorFlow
+prune: 'no'
 version: 1.1
 files:
-- name: pt_OFA-resnet50_imagenet_224_224_0.60_6.0G_1.1_Z4.0
-  type: float & quantized
+- name: tf_vgg19_imagenet_224_224_39.28G_1.1_Z4.0
+  type: float and quantized
   board: CPU
-  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_OFA-resnet50_imagenet_224_224_0.60_6.0G_1.1_Z4.0.zip
-  checksum: 4b47935bc0cefa2b9d9fa3c7bc3631ea
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_vgg19_imagenet_224_224_39.28G_1.1_Z4.0.zip
+  checksum: 025c9b383a5e93aad01cd1d87ed81345
 license: https://github.com/amd/UIF/blob/main/LICENSE
+

@@ -18,11 +18,11 @@ input size: 128*128*128
 float ops: 538.3G
 task: kidney tumor segmentation
 framework: pytorch
-prune: 'yes'
+prune: '0.5'
 version: 1.1
 files:
 - name: pt_3dunet_kits19_128_128_128_0.5_538.3G_1.1_Z4.0
-  type: float & quantized
+  type: float
   board: CPU
   download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_3dunet_kits19_128_128_128_0.5_538.3G_1.1_Z4.0.zip
   checksum: 91cf68d3550ba64ea54ac7c288371349

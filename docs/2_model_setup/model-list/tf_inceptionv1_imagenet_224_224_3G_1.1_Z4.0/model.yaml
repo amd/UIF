@@ -17,7 +17,7 @@ description: Inception V1 for ImageNet Classification.
 input size: '224'
 float ops: 3G
 task: Image Classification
-framework: TensorFlow 1
+framework: TensorFlow
 prune: 'no'
 version: 1.1
 files:
@@ -25,6 +25,6 @@ files:
   type: float and quantized
   board: CPU
   download link: https://www.xilinx.com/bin/public/openDownload?filename=tf_inceptionv1_imagenet_224_224_3G_1.1_Z4.0.zip
-  checksum: 6b4cae5d88cb8bd4a483bf90824ac94f
+  checksum: fd3ec178f037d06989ad1ce3f311d6c0
 license: https://github.com/amd/UIF/blob/main/LICENSE
 

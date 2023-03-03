@@ -18,7 +18,7 @@ input size: 224*224
 float ops: 2.45G
 task: classification
 framework: tensorflow
-prune: 'yes'
+prune: '0.65'
 version: 1.1
 files:
 - name: tf_resnetv1_50_imagenet_224_224_0.65_2.45G_1.1_Z4.0$

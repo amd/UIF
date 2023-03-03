@@ -17,7 +17,7 @@ description: RefineDet(vgg16) detection on EDD2020.
 input size: 320*320
 float ops: 81.28G
 task: detection
-framework: tensorflow1
+framework: tensorflow
 prune: 'no'
 version: 1.1
 files:

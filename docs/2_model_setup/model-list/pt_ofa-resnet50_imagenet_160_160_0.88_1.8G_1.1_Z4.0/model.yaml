@@ -18,7 +18,7 @@ input size: 160*160
 float ops: 1.8G
 task: classification
 framework: pytorch
-prune: None
+prune: '0.88'
 version: 1.1
 files:
 - name: pt_OFA-resnet50_imagenet_160_160_0.88_1.8G_1.1_Z4.0

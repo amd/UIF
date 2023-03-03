@@ -14,7 +14,7 @@
 
 
 description: inceptionv3 for classification.
-input size: '224'
+input size: '299'
 float ops: 9.1G
 task: classification
 framework: onnxruntime

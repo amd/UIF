@@ -15,10 +15,10 @@
 
 description: Inception V4 moderate pruned for ImageNet Classification.
 input size: '299'
-float ops: 19.56B
+float ops: 19.56G
 task: Image Classification
-framework: TensorFlow 1
-prune: 'yes'
+framework: TensorFlow
+prune: '0.20'
 version: 1.1
 files:
 - name: tf_inceptionv4_imagenet_299_299_0.20_19.56G_1.1_Z4.0

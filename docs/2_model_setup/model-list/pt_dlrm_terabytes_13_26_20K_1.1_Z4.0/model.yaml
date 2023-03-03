@@ -16,13 +16,13 @@
 description: DLRM on Criteo TeraBytes.
 input size: 13 & 26
 float ops: 20K
-task: Language Modeling
+task: Recommendation System
 framework: pytorch
 prune: 'no'
 version: 1.1
 files:
 - name: pt_dlrm_terabytes_13_26_20K_1.1_Z4.0
-  type: float
+  type: float and quantized
   board: CPU
   download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm_terabytes_13_26_20K_1.1_Z4.0.zip
   checksum: fe564c09f54beef32e36d0d5a71670b8

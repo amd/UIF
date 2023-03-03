@@ -18,11 +18,11 @@ input size: 192*192
 float ops: 3.6G
 task: classification
 framework: pytorch
-prune: None
+prune: '0.74'
 version: 1.1
 files:
 - name: pt_OFA-resnet50_imagenet_192_192_0.74_3.6G_1.1_Z4.0
-  type: float
+  type: float & quantized
   board: CPU
   download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_OFA-resnet50_imagenet_192_192_0.74_3.6G_1.1_Z4.0.zip
   checksum: fc934c01397b9a994b6f6d10d85a8bc1

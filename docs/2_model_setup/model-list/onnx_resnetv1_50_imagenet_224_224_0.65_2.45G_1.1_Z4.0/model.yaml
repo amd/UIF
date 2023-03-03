@@ -17,7 +17,7 @@ description: resnetv1_50 Base for classification.
 input size: '224'
 float ops: 2.45G
 task: classification
-framework: tensorflow2
+framework: onnxruntime
 prune: '0.65'
 version: 1.1
 files:

@@ -21,7 +21,7 @@ framework: pytorch
 prune: 'no'
 version: 1.1
 files:
-- name: pt_distilgpt2_wikitext2_wikitext2_1024_106.3G_1.1_Z4.0
+- name: pt_distilgpt2_wikitext2_1024_106.3G_1.1_Z4.0
   type: float
   board: CPU
   download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_distilgpt2_wikitext2_1024_106.3G_1.1_Z4.0.zip

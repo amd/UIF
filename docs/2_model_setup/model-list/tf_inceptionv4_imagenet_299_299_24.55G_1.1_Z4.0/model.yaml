@@ -17,7 +17,7 @@ description: Inception V4 for ImageNet Classification.
 input size: '299'
 float ops: 24.55G
 task: Image Classification
-framework: TensorFlow 1
+framework: TensorFlow
 prune: 'no'
 version: 1.1
 files:

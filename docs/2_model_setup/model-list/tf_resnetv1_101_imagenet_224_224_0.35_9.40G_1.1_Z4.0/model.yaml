@@ -15,10 +15,10 @@
 
 description: ResNet V1 101 moderate pruned for ImageNet Classification.
 input size: '224'
-float ops: 9.40B
+float ops: 9.40G
 task: Image Classification
-framework: TensorFlow 1
-prune: 'yes'
+framework: TensorFlow
+prune: '0.35'
 version: 1.1
 files:
 - name: tf_resnetv1_101_imagenet_224_224_0.35_9.40G_1.1_Z4.0

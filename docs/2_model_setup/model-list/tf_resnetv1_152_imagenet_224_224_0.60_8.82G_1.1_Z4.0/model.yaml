@@ -15,10 +15,10 @@
 
 description: ResNet V1 152 aggressive pruned for ImageNet Classification.
 input size: '224'
-float ops: 8.82B
+float ops: 8.82G
 task: Image Classification
-framework: TensorFlow 1
-prune: 'yes'
+framework: TensorFlow
+prune: '0.6'
 version: 1.1
 files:
 - name: tf_resnetv1_152_imagenet_224_224_0.60_8.82G_1.1_Z4.0

@@ -88,7 +88,7 @@ input size: 256x128
 float ops: 1.6G
 task: person reid
 framework: pytorch
-prune: 'yes'
+prune: '0.7'
 version: 1.1
 files:
 - name: pt_personreid-res50_market1501_256_128_0.7_1.6G_1.1_Z4.0

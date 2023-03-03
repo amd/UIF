@@ -17,7 +17,7 @@ description: VGG16 for classification.
 input size: '224'
 float ops: 17.67G
 task: classification
-framework: tensorflow2
+framework: onnxruntime
 prune: '0.43'
 version: 1.1
 files:

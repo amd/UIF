@@ -17,7 +17,7 @@ description: Pruned RefineDet(vgg16) detection on EDD2020.
 input size: 320*320
 float ops: 41.42G
 task: detection
-framework: tensorflow1
+framework: tensorflow
 prune: '0.5'
 version: 1.1
 files:

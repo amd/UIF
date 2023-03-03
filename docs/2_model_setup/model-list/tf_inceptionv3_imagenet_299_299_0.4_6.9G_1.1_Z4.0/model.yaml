@@ -18,7 +18,7 @@ input size: 299*299
 float ops: 6.9G
 task: classification
 framework: tensorflow
-prune: 'yes'
+prune: '0.4'
 version: 1.1
 files:
 - name: tf_inceptionv3_imagenet_299_299_0.4_6.9G_1.1_Z4.0

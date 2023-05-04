@@ -115,6 +115,14 @@ The following pages outline debugging and profiling strategies:
  - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#51-debug-on-gpu">5.1: Debug on GPU</a>
  - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#52-debug-on-cpu">5.2: Debug on CPU</a>
  - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#53-debug-on-fpga">5.3: Debug on FPGA</a>
+ 
+ 
+ ### Step 6: Deploying on PyTorch and Tensorflow
+
+The following pages outline deploying strategies on PyTorch and Tensorflow:
+
+ - <a href="/docs/6_deployment_guide/PyTorch.md">6.1: PyTorch</a>
+ - <a href="/docs/6_deployment_guide/Tensorflow.md">6.2: Tensorflow</a>
 
 <hr/>
 

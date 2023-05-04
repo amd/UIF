@@ -121,8 +121,8 @@ The following pages outline debugging and profiling strategies:
 
 The following pages outline deploying strategies on PyTorch and Tensorflow:
 
- - <a href="/docs/6_deployment_guide/PyTorch.md">PyTorch</a>
- - <a href="/docs/6_deployment_guide/Tensorflow.md">Tensorflow</a>
+ - <a href="https://github.com/amd/UIF/blob/main/docs/6_deployment_guide/PyTorch.md">PyTorch</a>
+ - <a href="https://github.com/amd/UIF/blob/main/docs/6_deployment_guide/Tensorflow.md">Tensorflow</a>
 
 <hr/>
 

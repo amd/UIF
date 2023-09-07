@@ -1,6 +1,6 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </tr>
  <tr>
@@ -28,13 +28,13 @@
 
 # 4.1.1: Pruning
 
-Neural networks are typically over-parameterized with significant redundancy. Pruning is the process of eliminating redundant weights while keeping the accuracy loss as low as possible. Industry research has led to several techniques that serve to reduce the computational cost of neural networks for inference. These techniques include:
+Neural networks are typically over-parameterized with significant redundancy. Pruning is the process of eliminating redundant weights while keeping the accuracy loss to a minimum. Industry research has led to several techniques that serve to reduce the computational cost of neural networks for inference. These techniques include:
 
 - Fine-grained pruning
 - Coarse-grained pruning
 - Neural Architecture Search (NAS)
 
-The simplest form of pruning is called fine-grained pruning and results in sparse matrices (that is, matrices which have many elements equal to zero), which requires the addition of specialized hardware and techniques for weight skipping and compression. Fine-grained pruning is not currently supported by UIF Optimizer. 
+The simplest form of pruning is called fine-grained pruning and results in sparse matrices (that is, matrices that have many elements equal to zero), which require the addition of specialized hardware and techniques for weight skipping and compression. Fine-grained pruning is not currently supported by UIF Optimizer. 
 
 UIF Optimizer employs coarse-grained pruning, which eliminates neurons that do not contribute significantly to the accuracy of the network. For convolutional layers, the coarse-grained method prunes the entire 3D kernel and hence is also known as channel pruning. 
 Inference acceleration can be achieved without specialized hardware for coarse-grained pruned models. Pruning always reduces the accuracy of the original model. Retraining (fine-tuning) adjusts the remaining weights to recover accuracy.
@@ -43,7 +43,7 @@ Coarse-grained pruning works well on large models with common convolutions, such
 
 # 4.1.2: UIF Optimizer Overview
 
-Inference in machine learning is computationally intensive and requires high memory bandwidth to meet the low-latency and high-throughput requirements of various applications. UIF Optimizer provides the ability to prune neural network models. It prunes redundant kernels in neural networks thereby reducing the overall computational cost for inference. The pruned models produced by UIF Optimizer are then quantized by UIF Quantizer to be further optimized.
+Inference in machine learning is computationally intensive and requires high memory bandwidth to meet the low-latency and high-throughput requirements of various applications. UIF Optimizer provides the ability to prune neural network models. It prunes redundant kernels in neural networks, thereby reducing the overall computational cost for inference. The pruned models produced by UIF Optimizer are then quantized by UIF Quantizer to be further optimized.
 
 The following tables show the features that are supported by UIF Optimizer for different frameworks:
 
@@ -62,14 +62,14 @@ The following tables show the features that are supported by UIF Optimizer for d
   </tr>
   <tr>
     <th scope="row">PyTorch</th>
-    <td>Supports 1.4 - 1.10</td>
+    <td>Supports 1.7 - 1.13</td>
     <td>Yes</td>
     <td>Yes</td>
     <td>Yes</td>
   </tr>
   <tr>
     <th scope="row">TensorFlow</th>
-    <td>Supports 2.3 - 2.8</td>
+    <td>Supports 2.4 - 2.12</td>
     <td>Yes</td>
     <td>No</td>
     <td>No</td>
@@ -150,13 +150,13 @@ model = pruning_runner.prune(removal_ratio=0.2)
 ```
 Run analysis only once for the same model. You can prune the model iteratively without re-running analysis because there is only one pruned model generated for a specific pruning ratio.
 
-The subnetwork obtained by pruning may not be very good because an approximate algorithm is used to generate this unique pruned model according to the analysis result.
+The subnetwork obtained by pruning may not be perfect because an approximate algorithm is used to generate this unique pruned model according to the analysis result.
 
 The one-step pruning method can generate a better subnetwork.
 
 #### One-step Pruning
 
-The method also includes two stages: adaptive batch normalization (BN) based searching for pruning strategy, and pruned model generation.
+The method also includes two stages: adaptive batch normalization (BN) based searching for pruning strategy and pruned model generation.
 After searching, a file named `.vai/your_model_name.search` is generated in which the search result (pruning strategies and corresponding evaluation scores) is stored. You can get the final pruned model in one-step.
 
 `num_subnet` provides the number of candidate subnetworks satisfying the sparsity requirement to be searched.
@@ -186,7 +186,7 @@ The one-step pruning method has several advantages over the iterative approach:
 - The workflow is simpler because you can obtain the final pruned model in one step without iterations.
 - Retraining a slim model is faster than a sparse model.
 
-There are two disadvantages to one-step pruning: one is that the random generation of pruning strategy is unstable. The other is that the subnetwork searching must be performed once for every pruning ratio.
+There are two disadvantages to one-step pruning: one is that the random generation of pruning strategy is unstable, and the other is that the subnetwork searching must be performed once for every pruning ratio.
 
 ### Retraining the Pruned Model
 
@@ -323,7 +323,7 @@ The searching result looks like the following:
 ```
 ### Getting a Subnetwork
 
-Call `get_static_subnet()` to get a specific subnetwork. The `static_subnet` can be used for finetuning and doing quantization.
+Call `get_static_subnet()` to get a specific subnetwork. The `static_subnet` can be used for finetuning and quantization.
 
 ```python
 pareto_global = ofa_pruner.load_subnet_config('pareto_global.txt')
@@ -393,15 +393,15 @@ sparse_model = runner.prune(ratio=0.2)
 ```
 **Note:** `ratio` is only an approximate target value and the actual pruning ratio may not be exactly equal to this value.
 
-The returned model from `prune()` is sparse which means the pruned channels are set to zeros and model size remains unchanged.
+The returned model from `prune()` is sparse, which means that the pruned channels are set to zeros and model size remains unchanged.
 The sparse model has been used in the iterative pruning process.
 The sparse model is converted to a pruned dense model only after pruning is completed.
 
-Besides returning a sparse model, the pruning runner generates a specification file in the `.vai` directory that describes how each layer will be pruned.
+Besides returning a sparse model, the pruning runner generates a specification file in the `.vai` directory that describes how each layer is pruned.
 
 ### 4.1.4.4: Fine-tuning a Sparse Model
 
-Training a sparse model is no different from training a normal model. The model will maintain sparsity internally. There is no need for any additional actions other than adjusting the hyper-parameters.
+Training a sparse model is no different from training a normal model. The model maintains sparsity internally. There is no need for any additional actions other than adjusting the hyper-parameters.
 
 ```python
 sparse_model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
@@ -425,7 +425,7 @@ sparse_model = runner.prune(ratio=0.5)
 ```
 ### 4.1.4.6: Getting the Pruned Model
 
-When the iterative pruning is completed, a sparse model is generated which has the same number of parameters as the original model but with many of them now set to zero.
+When the iterative pruning is completed, a sparse model is generated, which has the same number of parameters as the original model but with many of them now set to zero.
 
 Call `get_slim_model()` to remove zeroed parameters from the sparse model and retrieve the pruned model:
 

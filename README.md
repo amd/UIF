@@ -1,77 +1,71 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </table>
 
 # Unified Inference Frontend
 
-Unified Inference Frontend (UIF) is an effort to consolidate the following compute platforms under one AMD inference solution with unified tools and runtime:
+Unified Inference Frontend (UIF) consolidates the following compute platforms under one AMD inference solution with unified tools and runtime:
 
-- AMD EPYC&trade; processors
-- AMD Instinct™ GPUs
-- AMD Ryzen&trade; processors
-- Versal&trade; ACAP
+- AMD EPYC&trade; and AMD Ryzen&trade; processors
+- AMD Instinct&trade; and AMD Radeon&trade; GPUs
+- AMD Versal&trade; Adaptive SoCs
 - Field Programmable Gate Arrays (FPGAs)
 
-UIF accelerates deep learning inference applications on all AMD compute platforms for popular machine learning frameworks, including TensorFlow, PyTorch, and ONNXRT. It consists of tools, libraries, models, and example designs optimized for AMD platforms that enable deep learning applications and framework developers to improve inference performance across various workloads such as computer vision, natural language processing, and recommender systems.
-
-
-![](/images/slide24.png)
-
-* **Note:** WinML is supported on Windows OS only.
-
-# Unified Inference Frontend 1.1
-
-UIF 1.1 extends the support to AMD Instinct GPUs in addition to EPYC CPUs starting from UIF 1.0. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for Instinct GPUs for Deep Learning Inference. UIF 1.1 provides 45 optimized models for Instinct GPUs and 84 for EPYC CPUs. The Vitis&trade; AI Optimizer tool is released as part of the Vitis AI 3.0 stack. UIF Quantizer is released in the PyTorch and TensorFlow Docker® images. Leveraging the UIF Optimizer and Quantizer enables performance benefits for customers when running with the MIGraphX and ZenDNN backends for Instinct GPUs and EPYC CPUs, respectively. This release also adds MIGraphX backend for [AMD Inference Server](https://github.com/Xilinx/inference-server). This document provides information about downloading, building, and running the UIF 1.1 release.
-
-## AMD Instinct GPU
-
-UIF 1.1 targets support for AMD GPUs. While UIF 1.0 enabled Vitis AI Model Zoo for TensorFlow+ZenDNN and PyTorch+ZenDNN, UIF v1.1 adds support for AMD Instinct&trade; GPUs. 
-
-UIF 1.1 also introduces tools for optimizing inference models. GPU support includes the ability to use AMD GPUs for optimizing inference as well the ability to deploy inference using the AMD ROCm™ platform. Additionally, UIF 1.1 has expanded the set of models available for AMD CPUs and introduces new models for AMD GPUs as well.
+UIF accelerates deep learning inference applications on all AMD compute platforms for popular machine learning frameworks, including TensorFlow, PyTorch, and ONNXRT. It consists of tools, libraries, models, and example designs optimized for AMD platforms. These enable deep learning application and framework developers to enhance inference performance across various workloads, including computer vision, natural language processing, and recommender systems. 
 
 # Release Highlights
 
+UIF 1.2 adds support for AMD Radeon&trade; GPUs in addition to AMD Instinct&trade; GPUs. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for both Radeon and Instinct GPUs for Deep Learning Inference. UIF supports 50 optimized models for Instinct and Radeon GPUs and 84 for EPYC CPUs. The AMD Vitis&trade; AI Optimizer tool is released as part of the Vitis AI 3.5 stack. UIF Quantizer is released in the PyTorch and TensorFlow Docker® images. Leveraging the UIF Optimizer and Quantizer enables performance benefits for customers when running with the MIGraphX and ZenDNN backends for Instinct and Radeon GPUs and EPYC CPUs, respectively. This release also adds MIGraphX backend for [AMD Inference Server](https://github.com/Xilinx/inference-server). This document provides information about downloading, building, and running the UIF v1.2 release.
+
 The highlights of this release are as follows:
+
+AMD Radeon&trade; GPU:
+* Support for AMD Radeon&trade; PRO V620 and W6800 GPUs.
+  For more information about the product, see https://www.amd.com/en/products/professional-graphics/amd-radeon-pro-w6800.
+* Tools for optimizing inference models and deploying inference using the AMD ROCm™ platform. 
+* Inclusion of the [rocAL](https://docs.amd.com/projects/rocAL/en/docs-5.5.0/user_guide/ch1.html) library.
+
+Model Zoo:
+* Expanded set of models for AMD CPUs and new models for AMD GPUs.
 
 ZenDNN:
 * TensorFlow, PyTorch, and ONNXRT with ZenDNN packages for download (from the ZenDNN web site)
-* 84 model packages containing FP32/BF16/INT8 models enabled to be run on TensorFlow+ZenDNN, PyTorch+ZenDNN and ONNXRT+ZenDNN
-* Up to 20.5x the throughput (images/second) running Medical EDD RefineDet with the Xilinx Vitis AI Model Zoo 3.0 88% pruned INT8 model on 2P AMD Eng Sample: 100-000000894-04
-of the EPYC 9004 96-core processor powered server with ZenDNN v4.0 compared to the baseline FP32 Medical EDD RefineDet model from the same Model Zoo. ([ZD-036](#zd036))
-* Docker containers for running AMD Inference Server
 
 ROCm:
 * Docker containers containing tools for optimizing models for inference
-* 30 quantized models enabled to run on AMD ROCm platform using MIGraphX inference engine
-* Up to 5.3x the throughput (images/second) running PT-OFA-ResNet50 with the Xilinx Vitis AI Model Zoo 3.0 88% pruned FP16 model on an AMD MI100 accelerator powered production server compared to the baseline FP32 PT- ResNet50v1.5 model from the same Model Zoo. ([ZD-041](#zd041))
+* 50 models enabled to run on AMD ROCm platform using MIGraphX inference engine
+* Up to 5.3x the throughput (images/second) running PT-OFA-ResNet50 with 78% pruned FP16 model on an AMD MI100 accelerator powered production server compared to the baseline FP32 PT- ResNet50v1.5 model. ([ZD-041](#zd041))
 * Docker containers for running AMD Inference Server
 
 AMD Inference Server provides a common interface for all inference modes:
   * Common C++ and server APIs for model deployment
   * Backend interface for using TensorFlow/PyTorch in inference for ZenDNN
-  * Additional UIF 1.1 optimized models examples for Inference Server
+  * Additional UIF 1.2 optimized models examples for Inference Server
   * Integration with KServe
+
+[Introducing Once-For-All (OFA)](/docs/2_model_setup/uifmodelsetup.md#213-once-for-all-ofa-efficient-model-customization-for-various-platforms), a neural architecture search method that efficiently customizes sub-networks for diverse hardware platforms, avoiding high computation costs. OFA can achieve up to 1.69x speedup on MI100 GPUs compared to ResNet50 baselines.
 
 # Prerequisites
 
 The following prerequisites must be met for this release of UIF:
+| Component          | Supported Hardware                                       |
+|--------------------|---------------------------------------------------------|
+| CPU                | AMD EPYC 9004 or 7003 Series Processors                |
+| GPU                | AMD Radeon™ PRO V620 and W6800, AMD Instinct™ MI200 or MI100 Series GPU                |
+| FPGA/AI Engine     | AMD Zynq™ SoCs or Versal devices supported in Vitis AI 3.5<br>**Note**: The inference server currently supports Vitis AI 3.0 devices|
+                                     
+| Component             | Supported Software                                    |
+|-----------------------|-------------------------------------------------------|
+| Operating Systems    | Ubuntu® 20.04 LTS and later, Red Hat® Enterprise Linux® 8.0 and later, CentOS 7.9 and later |
+| ZenDNN                | Version 4.0 for AMD EPYC CPU                          |
+| MIGraphX              | Version 2.6 for AMD Instinct GPU                      |
+| Vitis AI              | Version 3.5 for FPGA/AIE, Model Zoo                   |
+| Inference Server      | Version 0.4                                           |
 
-* Hardware based on target platform:
-  * CPU: AMD EPYC [9004](https://www.amd.com/en/processors/epyc-9004-series) or [7003](https://www.amd.com/en/processors/epyc-7003-series) Series Processors
-  * GPU: AMD Instinct&trade; [MI200](https://www.amd.com/en/graphics/instinct-server-accelerators) or [MI100](https://www.amd.com/en/products/server-accelerators/instinct-mi100) Series GPU
-  * FPGA/AI Engine: Zynq&trade; SoCs or Versal devices supported in [Vitis AI 3.0](https://github.com/Xilinx/Vitis-AI)
 
-* Software based on target platform:
-  * OS: Ubuntu® 18.04 LTS and later, Red Hat® Enterprise Linux® (RHEL) 8.0 and later, CentOS 7.9 and later
-  * ZenDNN 4.0 for AMD EPYC CPU
-  * MIGraphX 2.4 for AMD Instinct GPU
-  * Vitis AI 3.0 FPGA/AIE
-  * Vitis AI 3.0 Model Zoo
-  * Inference Server 0.3
-
-## Implementing UIF 1.1
+## Getting Started with UIF v1.2
 
 ### Step 1: Installation 
 
@@ -115,16 +109,8 @@ The following pages outline debugging and profiling strategies:
  - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#51-debug-on-gpu">5.1: Debug on GPU</a>
  - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#52-debug-on-cpu">5.2: Debug on CPU</a>
  - <a href="/docs/5_debugging_and_profiling/debugging_and_profiling.md#53-debug-on-fpga">5.3: Debug on FPGA</a>
- 
- 
- ### Step 6: Deploying on PyTorch and Tensorflow
 
-The following pages outline deploying strategies on PyTorch and Tensorflow:
-
- - <a href="https://github.com/amd/UIF/blob/main/docs/6_deployment_guide/PyTorch.md">PyTorch</a>
- - <a href="https://github.com/amd/UIF/blob/main/docs/6_deployment_guide/Tensorflow.md">Tensorflow</a>
-
-<hr/>
+ <hr/>
 
  [Next >](/docs/1_installation/installation.md)
 
@@ -166,11 +152,11 @@ AOCC CPU OPTIMIZATIONS BINARY IS SUBJECT TO THE LICENSE AGREEMENT ENCLOSED IN TH
 
 #### ZD036:
 
-Testing conducted by AMD Performance Labs as of Thursday, January 12, 2023, on the ZenDNN v4.0 software library, Xilinx Vitis AI Model Zoo 3.0, on test systems comprising of AMD Eng Sample of the EPYC 9004 96-core processor, dual socket, with hyperthreading on, 2150 MHz CPU frequency (Max 3700 MHz), 786GB RAM (12 x 64GB DIMMs @ 4800 MT/s; DDR5 - 4800MHz 288-pin Low Profile ECC Registered RDIMM 2RX4), NPS1 mode, Ubuntu® 20.04.5 LTS version, kernel version 5.4.0-131-generic, BIOS TQZ1000F, GCC/G++ version 11.1.0, GNU ID 2.31, Python 3.8.15, AOCC version 4.0, AOCL BLIS version 4.0, TensorFlow version 2.10. Pruning was performed by the Xilinx Vitis AI pruning and quantization tool v3.0. Performance may vary based on use of latest drivers and other factors. ZD036
+Testing conducted by AMD Performance Labs as of Thursday, January 12, 2023, on the ZenDNN v4.0 software library, Xilinx Vitis AI Model Zoo 3.5, on test systems comprising of AMD Eng Sample of the EPYC 9004 96-core processor, dual socket, with hyperthreading on, 2150 MHz CPU frequency (Max 3700 MHz), 786GB RAM (12 x 64GB DIMMs @ 4800 MT/s; DDR5 - 4800MHz 288-pin Low Profile ECC Registered RDIMM 2RX4), NPS1 mode, Ubuntu® 20.04.5 LTS version, kernel version 5.4.0-131-generic, BIOS TQZ1000F, GCC/G++ version 11.1.0, GNU ID 2.31, Python 3.8.15, AOCC version 4.0, AOCL BLIS version 4.0, TensorFlow version 2.10. Pruning was performed by the Xilinx Vitis AI pruning and quantization tool v3.5. Performance may vary based on use of latest drivers and other factors. ZD036
 
 #### ZD041:
 
-Testing conducted by AMD Performance Labs as of Wednesday, January 18, 2023, on test systems comprising of: AMD MI100, 1200 MHz CPU frequency, 8x32GB GPU Memory, NPS1 mode, Ubuntu® 20.04 version, kernel version 4.15.0-166-generic, BIOS 2.5.6, GCC/G++ version 9.4.0, GNU ID 2.34, Python 3.7.13, xcompiler version 3.0.0, pytorch-nndct version 3.0.0, xir version 3.0.0, target_factory version 3.0.0, unilog version 3.0.0, ROCm version 5.4.1.50401-84~20.04. Pruning was performed by the Xilinx Vitis AI pruning and quantization tool v3.0. Performance may vary based on use of latest drivers and other factors. ZD-041
+Testing conducted by AMD Performance Labs as of Wednesday, January 18, 2023, on test systems comprising of: AMD MI100, 1200 MHz CPU frequency, 8x32GB GPU Memory, NPS1 mode, Ubuntu® 20.04 version, kernel version 4.15.0-166-generic, BIOS 2.5.6, GCC/G++ version 9.4.0, GNU ID 2.34, Python 3.7.13, xcompiler version 3.5.0, pytorch-nndct version 3.5.0, xir version 3.5.0, target_factory version 3.5.0, unilog version 3.5.0, ROCm version 5.4.1.50401-84~20.04. Pruning was performed by the Xilinx Vitis AI pruning and quantization tool v3.5. Performance may vary based on use of latest drivers and other factors. ZD-041
 
 
 

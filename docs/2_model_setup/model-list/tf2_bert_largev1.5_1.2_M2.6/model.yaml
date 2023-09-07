@@ -1,0 +1,46 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: BERT Large v1.5 for SQuADv1.1 Question Answering
+input size: '384'
+float ops: 246.42G
+task: Question Answering
+framework: TensorFlow 2.x
+prune: 'no'
+version: 1.2
+files:
+- name: tf2_bert_large_1.2_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_bert_large_1.2_M2.6.tar.gz
+  checksum: 810ae23bdc7c2eaa74b760670aa260bc
+- name: tf2_bert_large_1.2_M2.6_MI100.tar.gz
+  type: Ymodel
+  board: M100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_bert_large_1.2_M2.6_MI100.tar.gz
+  checksum: 8c5e56f47a83592b5b627680808b89e2
+- name: tf2_bert_large_1.2_M2.6_MI210.tar.gz 
+  type: Ymodel
+  board: M210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_bert_large_1.2_M2.6_MI210.tar.gz
+  checksum: 584f593952064b208daaf7d3a8ae1e37
+- name: tf2_bert_large_1.2_M2.6_NAVI2.tar.gz
+  type: Ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_bert_large_1.2_M2.6_NAVI2.tar.gz
+  checksum: 4f5f978a176731a496aad451df91c984
+license: https://github.com/amd/UIF/blob/main/LICENSE
+
+

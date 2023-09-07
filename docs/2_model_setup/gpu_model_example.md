@@ -1,6 +1,6 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </tr>
  <tr>
@@ -19,7 +19,7 @@
 
   _Click [here](/README.md#implementing-uif-11) to go back to the UIF User Guide home page._
 
-UIF accelerates deep learning inference applications on all AMD compute platforms for popular machine learning frameworks, including TensorFlow, PyTorch, and ONNXRT. UIF 1.1 extends the support to AMD Instinct™ GPUs. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for Deep Learning Inference running on AMD Instinct GPUs. 
+UIF accelerates deep learning inference applications on all AMD compute platforms for popular machine learning frameworks, including TensorFlow, PyTorch, and ONNXRT. UIF 1.2 extends the support to AMD Radeon™ GPUs in addition to AMD Instinct™ GPUs. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for Deep Learning Inference running on AMD Instinct GPUs. 
 
 The following example takes a PyTorch ResNet-50-v1.5 model selected from UIF Model Zoo as an example to show how it works on different GPU platforms.
 
@@ -31,7 +31,7 @@ After unzipping the PyTorch ResNet50-v1.5 model, you need to set environment and
 
   1. Download the UIF Docker image with the following instruction:
      
-    docker pull amdih/uif-pytorch:uif1.1_rocm5.4.1_vai3.0_py3.7_pytorch1.12
+    docker pull amdih/uif-pytorch:uif1.2_rocm5.6.1_vai3.5_py3.8_pytorch1.13
     
 
    **Note**: AMD GPU dependencies and PyTorch are pre-installed in the Docker. 
@@ -43,7 +43,7 @@ After unzipping the PyTorch ResNet50-v1.5 model, you need to set environment and
    ```shell
   $ pip install --user -r requirements.txt
    ```
-
+**Note**: Modern servers commonly feature multi-socket or multi-core architectures. GPU nodes possess an affinity for specific CPU cores, crucial for efficient memory transfers between the GPU and the host. Ensuring these transfers occur through the designated CPU cores is essential. Neglecting GPU-CPU affinity, especially for larger models, can result in unstable performance. To address this, you can enhance GPU-CPU affinity by setting up Non-Uniform Memory Access (NUMA) bindings when running the Docker image using the `--cpuset-cpus` and `ROCR_VISIBLE_DEVICES` arguments.
 
 # 2.6.2: Data Preparation
 
@@ -104,7 +104,7 @@ Loading model: float/resnet50_pretrained.pth
 
 The onnx models are provided in the `float` folder, so you can choose to skip this step. 
 
-- You can then run inference and evaluation with MIGraphX. Here, scripts are provided to evaluate the model's accuracy with MIGraphX.
+- Run inference and evaluation with MIGraphX. Here, scripts are provided to evaluate the model's accuracy with MIGraphX.
 
 ```
   $ sh run_test_migraphx.sh
@@ -168,13 +168,11 @@ Overhead: 1%, -14%
 
 # 2.6.4: Performance
 
-The accuracy and performance of the FP32/16 onnx model on AMD GPU MI100 (MIGraphX driver 2.4) are evaluated as follows:
-
-|Resnet50 Model |Input Size|FLOPs| Top-1/Top-5 Accuracy, %| Performance Rate, /sec |
-|----|---|---|---|---|
-|PyTorch model| 224x224 | 8.2G|  76.1/92.9 |  - |
-|FP32 onnx model| 224x224 | 8.2G|  76.1/92.9 |  bs=1: 484.147<br> bs=64: 5176.15|
-|FP16 onnx model| 224x224 | 8.2G|  76.1/92.9 |  bs=1: 734.367<br> bs=64: 5176.15|
+|Resnet50 Model |Input Size|FLOPs| Top-1/Top-5 Accuracy, %| 
+|----|---|---|---|
+|PyTorch model| 224x224 | 8.2G|  76.1/92.9 |
+|FP32 onnx model| 224x224 | 8.2G|  76.1/92.9 |
+|FP16 onnx model| 224x224 | 8.2G|  76.1/92.9 |
 
 
 # 2.6.5: Data Preprocessing for Inference

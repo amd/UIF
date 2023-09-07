@@ -1,0 +1,47 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: Albert large v1.5 trained on Wikitext2
+float ops:246.44G
+task: Language Modeling
+framework: pytorch
+prune: 'no'
+version: 1.2
+files:
+- name: pt_albert_large_1.2_M2.6.tar.gz               	b7c624a91924e9bcc668ae7c5fb67de9
+pt_albert_large_1.2_M2.6_MI100.tar.gz         	88cc36b5e5f38efea243b7bbb63b7905
+pt_albert_large_1.2_M2.6_MI210.tar.gz         	b7f63736b5fb93934b3c0d9b74b0ffa8
+pt_albert_large_1.2_M2.6_NAVI2.tar.gz         	df92b53eff089eeb23b98a36049544de
+
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_albert_base_1.2_M2.6.tar.gz
+  checksum: b7c624a91924e9bcc668ae7c5fb67de9
+- name: pt_albert_large_1.2_M2.6_MI100.tar.gz
+  type: Ymodel
+  board: M100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_albert_large_1.2_M2.6_MI100.tar.gz
+  checksum: 88cc36b5e5f38efea243b7bbb63b7905
+- name: pt_albert_large_1.2_M2.6_MI210.tar.gz
+  type: Ymodel
+  board: M210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_albert_large_1.2_M2.6_MI210.tar.gz
+  checksum: b7f63736b5fb93934b3c0d9b74b0ffa8
+- name: pt_albert_large_1.2_M2.6_NAVI2.tar.gz
+  type: Ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_albert_large_1.2_M2.6_NAVI2.tar.gz
+  checksum: df92b53eff089eeb23b98a36049544de
+license: https://github.com/amd/UIF/blob/main/LICENSE

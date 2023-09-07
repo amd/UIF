@@ -1,0 +1,117 @@
+# ADVANCED MICRO DEVICES, INC. 
+# LICENSE AGREEMENT FOR NON-COMMERCIAL MODELS 
+#
+# Trained Models:
+# inception-resnetv2, 
+# inceptionv1, 
+# inceptionv1 pruned0.09, 
+# inceptionv1 pruned0.16, 
+# inceptionv2, 
+# inceptionv3, 
+# inceptionv3 pruned0.2, 
+# inceptionv3 pruned0.4, 
+# inceptionv4, 
+# inceptionv4 pruned0.2, 
+# inceptionv4 pruned0.4, 
+# mobilenetv1_1.0, 
+# mobilenetv1_1.0 pruned0.11, 
+# mobilenetv1_1.0 pruned0.12, 
+# resnetv1_50, 
+# resnetv1_50 pruned0.38, 
+# resnetv1_50 pruned0.65, 
+# resnetv1_101, 
+# resnetv1_101 pruned0.35, 
+# resnetv1_101 pruned0.57, 
+# resnetv1_152, 
+# resnetv1_152 pruned0.51, 
+# resnetv1_152 pruned0.60, 
+# vgg16, 
+# vgg16 pruned0.43, 
+# vgg16 pruned0.50, 
+# vgg19, 
+# vgg19 pruned0.24, 
+# vgg19 pruned0.39, 
+# efficientnet-edgetpu-S, 
+# efficientnet-edgetpu-M, 
+# efficientnet-edgetpu-L, 
+# resnet50, 
+# inceptionv3, 
+# inceptionv3 pruned0.3, 
+# inceptionv3 pruned0.4, 
+# inceptionv3 pruned0.5, 
+# inceptionv3 pruned0.6, 
+# resnet50_v1.5, 
+# resnet50_v1.5 pruned0.3, 
+# resnet50_v1.5 pruned0.4, 
+# resnet50_v1.5 pruned0.5, 
+# resnet50_v1.5 pruned0.6, 
+# resnet50_v1.5 pruned0.7, 
+# OFA-resnet50, 
+# OFA-resnet50 pruned0.45, 
+# OFA-resnet50 pruned0.60, 
+# OFA-resnet50 pruned0.74, 
+# OFA-resnet50 pruned0.88, 
+# Resnet34-ssd, 
+# Resnet34-ssd pruned0.19, 
+# Resnet34-ssd pruned0.29, 
+# Reid_resnet50, 
+# Reid_resnet50 pruned0.4, 
+# Reid_resnet50 pruned0.5, 
+# Reid_resnet50 pruned0.6, 
+# Reid_resnet50 pruned0.7, 
+# DLRM
+# ViT
+# PointPillars
+# Resnet50_v1.5 ofa
+#
+# This License Agreement for Non-Commercial Models (“Agreement”) is a legal agreement between you (either an individual or 
+# an entity) and Advanced Micro Devices, Inc. (“AMD”). DO NOT USE THE TRAINED MODELS IDENTIFIED ABOVE UNTIL YOU HAVE 
+# CAREFULLY READ AND AGREE TO THE AGREEMENT. BY USING, INSTALLING, MODIFYING, COPYING, TRAINING, BENCHMARKING, OR 
+# DISTRIBUTING THE TRAINED MODELS, YOU ACCEPT ALL TERMS AND CONDITIONS OF THIS AGREEMENT.  
+# If you do not accept these terms, do not use the Trained Models. 
+#
+# 1.Subject to Your compliance with this Agreement, AMD grants you a license to use, modify, and distribute the Trained 
+# Models solely for non-commercial and research purposes. This means you may use the Trained Models for benchmarking, 
+# testing, and evaluating the Trained Models (including non-commercial research undertaken by or funded by a
+# commercial entity) but you cannot use the Trained Models in any commercial offering, including as part of a 
+# product or service You use or provide to others in exchange for money or other consideration. 
+#
+# 2.Your use of the Trained Models are subject to the following conditions: (a) You cannot alter any copyright, trademark, 
+# or other notice in the Trained Models; (b) You cannot sublicense or distribute the Trained Models under any other terms or # conditions; (c) You cannot use AMD’s trademarks in your applications or technologies in a way that suggests you 
+# applications or technologies are endorsed by AMD; (d) if you distribute the Trained Model, You must provide corresponding # source code for Trained Model; and (e) if the Trained Models include any code or content subject to a open source license # or third party license (“Third Party Materials”), You agree to comply with such license terms. 
+#
+# 3.THE TRAINED MODELS (INCLUDING THIRD PARTY MATERIALS, IF ANY) ARE PROVIDED “AS IS” AND WITHOUT A WARRANTY OF ANY KIND, 
+# WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+# PURPOSE AND NON-INFRINGEMENT. YOU BEAR ALL RISK OF USING THE TRAINED MODELS (INCLUDING THIRD PARTY PART MATERIALS, IF ANY) # AND YOU AGREE TO RELEASE AMD FROM ANY LIABILITY OR DAMAGES FOR ANY CLAIM  OR ACTION ARISING OUT OF OR IN CONNECTION WITH 
+# YOUR USE OF THE TRAINED MODEL AND/OR THIRD PARTY MATERIALS.  
+
+
+description: DLRM 40M Trained on CriteoTerabyte Dataset
+input size: 13,26
+float ops: 20K
+task: Recommendation System
+framework: pytorch
+prune: 'no'
+version: 1.2
+files:
+- name: pt_dlrm40M_1.2_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm40M_1.2_M2.6.tar.gz
+  checksum: 7e8ec40f4cc93d70efe625afa1ee9a21
+- name: pt_dlrm40m_1.2_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm40m_1.2_M2.6_MI100.tar.gz
+  checksum: 642951c34c99bea3fefa06f8f72c675c
+- name: pt_dlrm40m_1.2_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm40m_1.2_M2.6_MI210.tar.gz
+  checksum: e69ef0943393a8af137da0388dd946a5
+- name: pt_dlrm40m_1.2_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm40m_1.2_M2.6_NAVI2.tar.gz
+  checksum: deaa620c6cac0ad32e7bb66cd2c5db8d 
+  license: https://github.com/amd/UIF/blob/main/LICENSE

@@ -21,7 +21,7 @@ For more information about UIF including use of this container, refer to https:/
 
 ```
 
-    docker pull amdih/uif-tensorflow:uif1.1_rocm5.4.1_vai3.0_tf2.10
+    docker pull amdih/uif-tensorflow:uif1.2_rocm5.6.1_vai3.5_tensorflow2.12
     
 ```
 
@@ -29,8 +29,8 @@ For more information about UIF including use of this container, refer to https:/
 
 The UIF Tensorflow Tools Docker container includes:
 
-* ROCm™ 5.4.1
-* ROCm™ Tensorflow 2.10
+* ROCm™ 5.6.1
+* ROCm™ Tensorflow 2.12
 * ROCm™ MIGraphX inference engine
 * Scripts for downloading pretrained models from the Model Zoo
 * Sample Application
@@ -52,7 +52,7 @@ Use the following instructions to launch the Docker container for the applicatio
       --group-add video 
       --ipc=host 
       --shm-size 8G 	
-      amdih/uif-tensorflow:uif1.1_rocm5.4.1_vai3.0_tf2.10
+      amdih/uif-tensorflow:uif1.2_rocm5.6.1_vai3.5_tensorflow2.12
     
 ```
 

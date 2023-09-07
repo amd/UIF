@@ -1,0 +1,42 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: EfficientDet for Object Detection
+float ops: 11.0G
+framework: tensorflow2
+prune: 'no'
+version: 1.2
+files:
+- name: tf2_efficientdet_1.2_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_efficientdet_1.2_M2.6.tar.gz
+  checksum: 6882e1a9e9973621cc90575cd168e390
+- name: tf2_efficientdet_1.2_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_efficientdet_1.2_M2.6_MI100.tar.gz
+  checksum: 782e0c36fb83498330fe65f692425222
+- name: tf2_efficientdet_1.2_M2.6_MI210.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_efficientdet_1.2_M2.6_MI210.tar.gz
+  checksum: 0725ee52f28d310ef3925cb18bd8b127
+- name: tf2_efficientdet_1.2_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=tf2_efficientdet_1.2_M2.6_NAVI2.tar.gz
+  checksum: b505c4e37ec4f3c2f4d9a1682d84d5f5
+license: https://github.com/amd/UIF/blob/main/LICENSE

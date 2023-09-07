@@ -1,0 +1,43 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: inceptionv3 prune0.6 model for image classification.
+input size: 299x299
+float ops: 4.5G
+task: image classfication
+framework: pytorch
+prune: 'yes'
+version: 1.1
+files:
+- name: pt_inceptionv3_0.6_1.1_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inceptionv3_0.6_1.1_M2.6.tar.gz
+  checksum: dcc3f88838375c0b2bce22273fddbafd
+- name: pt_inception_0.6_1.1_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inception_0.6_1.1_M2.6_MI100.tar.gz
+  checksum: b8ee4450dab0b4b2f2d913fb23fa7beb
+- name: pt_inception_0.6_1.1_M2.6_MI210.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inception_0.6_1.1_M2.6_MI210.tar.gz
+  checksum: 49f2b0df22f3b8146e0b95397866a80c
+- name: pt_inception_0.6_1.1_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_inception_0.6_1.1_M2.6_NAVI2.tar.gz
+  checksum: 2f4dc51231e0feb9369bcf63793f016f

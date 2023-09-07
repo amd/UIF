@@ -1,0 +1,44 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: resnet50 prune0.6 model for image classification.
+input size: '224'
+float ops: 3.3G
+task: image classfication
+framework: pytorch
+prune: '0.6'
+version: 1.1
+files:
+- name: pt_resnet50v1.5_0.6_1.1_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_resnet50v1.5_0.6_1.1_M2.6.tar.gz
+  checksum: 935d68911625b6f53298ab862fbcccf5
+- name: pt_resnet50_0.6_1.1_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_resnet50_0.6_1.1_M2.6_MI100.tar.gz
+  checksum: e179ea3f0bd0b6d8e3090f60c1a8f16d
+- name: pt_resnet50_0.6_1.1_M2.6_MI210.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_resnet50_0.6_1.1_M2.6_MI210.tar.gz
+  checksum: 3e137fe209b16c8e364e7a3333fcc72f
+- name: pt_resnet50_0.6_1.1_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_resnet50_0.6_1.1_M2.6_NAVI2.tar.gz
+  checksum: f1a6dd89eb60401714159050cb3ff9c3 
+

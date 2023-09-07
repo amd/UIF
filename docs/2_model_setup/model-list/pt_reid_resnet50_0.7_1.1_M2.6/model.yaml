@@ -1,0 +1,43 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: resnet50-based person re-identification model.
+input size: 256x128
+float ops: 1.6G
+task: person reid
+framework: pytorch
+prune: '0.7'
+version: 1.1
+files:
+- name: pt_reid_resnet50_0.7_1.1_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_reid_resnet50_0.7_1.1_M2.6.tar.gz
+  checksum: 0bcf55d14ca3c839baf9b7d4a07afdd4
+- name: pt_reid_resnet50_0.7_1.1_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_reid_resnet50_0.7_1.1_M2.6_MI100.tar.gz
+  checksum: 231a509fbb18d8a3c08262dea17f6cd4
+- name: pt_reid_resnet50_0.7_1.1_M2.6_MI210.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_reid_resnet50_0.7_1.1_M2.6_MI210.tar.gz
+  checksum: 595907af84ef63dde61a80a40c00a4e0
+- name: pt_reid_resnet50_0.7_1.1_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_reid_resnet50_0.7_1.1_M2.6_NAVI2.tar.gz
+  checksum: e9a722459e729bb0c69cc429f33db859

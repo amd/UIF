@@ -1,6 +1,6 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </tr>
  <tr>
@@ -28,8 +28,7 @@
     - [1.4.2: Build an Inference Server Docker Image](#142-build-an-inference-server-docker-image)
 
 
-  _Click [here](/README.md#implementing-uif-11) to go back to the UIF User Guide home page._
-
+     _Click [here](/README.md#implementing-uif-11) to go back to the UIF User Guide home page._
 
 # 1.1: Pull PyTorch/TensorFlow Docker (for GPU Users)
 
@@ -39,35 +38,11 @@
 
 ROCm™ Userspace API is guaranteed to be compatible with specific older and newer ROCm base driver installations. 
 
-**Note**: The ROCm userspace is delivered using a Docker® container based on ROCm v5.4. Consult this matrix when running a Docker container with a different version of ROCm than installed on the host.
-
-**Legend**
-
-* Green: Shows compatibility between the same versions.
-
-* Blue: Shows compatibility tested versions. 
-
-* Gray: Not tested. 
-
-**Note:** The color in the figures may vary slightly.
-
-![](./images/5.4Matrix1.png)
-
-Kernel space compatibility meets the following condition:
-
-* Userspace works with -/+ 2 releases of kernel space
-
-### Framework Compatibility
-
-The UIF v1.1 release supports the most recent and two prior releases of PyTorch and TensorFlow.
-
-* UIF v1.1 is based on TensorFlow 2.10 and PyTorch 1.12.
-
-* UIF v1.1 has been tested with TensorFlow 2.3 to 2.10 and PyTorch 1.2 to 1.12.
+**Note**: The ROCm userspace is delivered using a Docker® container based on ROCm v5.6.1. Refer to the following matrix for details on the supported PyTorch and TensorFlow versions: https://rocm.docs.amd.com/en/latest/release/3rd_party_support_matrix.html.
 
 ### ROCm Installation 
 
-For general information on ROCm installation, refer to the [ROCm Installation Guide](https://docs.amd.com). 
+For general information on ROCm installation, see [Deploy ROCm on Linux](https://rocm.docs.amd.com/en/latest/deploy/linux/index.html). 
 
 ### Verifying ROCm Installation
 
@@ -84,7 +59,8 @@ Install the Docker software. If Docker is not installed on your machine, see the
 
 The UIF/TensorFlow Docker image provides a superset functionality from ROCm/TensorFlow, and the UIF/PyTorch Docker image provides a superset functionality from ROCm/PyTorch.  When the UIF Docker images were created, no items were deleted from underlying PyTorch or TensorFlow Docker images. The items that have been added in the superset include:
 
-* Quantizer and pruner tools as plugins to TensorFlow/PyTorch to enable the use of UIF Docker images to quantize models on a ROCm platform (for GPU or CPU). **Note:** To use the pruner, use the Vitis&trade; AI 3.0 ROCm Dockers. See the [Host Installation Instructions](https://xilinx.github.io/Vitis-AI/docs/install/install.html#docker-install-and-verification) in the Vitis AI documentation for details. 
+* Quantizer and pruner tools as plugins to TensorFlow/PyTorch to enable the use of UIF Docker images to quantize models on a ROCm platform (for GPU or CPU). 
+  **Note:** To use the pruner, use the Vitis&trade; AI 3.5 ROCm Dockers. See the [Host Installation Instructions](https://xilinx.github.io/Vitis-AI/3.5/html/docs/install/install.html#docker-install-and-verification) in the Vitis AI documentation for details. 
 * MIGraphX to enable the use of UIF Docker images for GPU inference
 
 ### PyTorch
@@ -95,15 +71,15 @@ Follow these steps:
 
 1.	Obtain the latest Docker image.
 
-      		docker pull amdih/uif-pytorch:uif1.1_rocm5.4.1_vai3.0_py3.7_pytorch1.12
+      		docker pull amdih/uif-pytorch:uif1.2_rocm5.6.1_vai3.5_py3.8_pytorch1.13
 
 
-	The above instruction will download the UIF container, including PyTorch and optimization tools. 
+	The previous instruction downloads the UIF container, including PyTorch and optimization tools. 
 
 
 2.	Start a Docker container using the image.
 
-      		docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G 	amdih/uif-pytorch:uif1.1_rocm5.4.1_vai3.0_py3.7_pytorch1.12
+      		docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G 	amdih/uif-pytorch:uif1.2_rocm5.6.1_vai3.5_py3.8_pytorch1.13
 
 	You can also pass the `-v` argument to mount any data directories from the host onto the container.
 
@@ -115,15 +91,15 @@ Follow these steps:
 
 1.	Obtain the latest Docker image.
 
-      		docker pull amdih/uif-tensorflow:uif1.1_rocm5.4.1_vai3.0_tf2.10
+      		docker pull amdih/uif-tensorflow:uif1.2_rocm5.6.1_vai3.5_tensorflow2.12
 
 
-	The above instruction will download the UIF container, including TensorFlow and optimization tools. 
+	The previous instruction downloads the UIF container, including TensorFlow and optimization tools. 
 
 
 2.	Start a Docker container using the image.
 
-      		docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G 	amdih/uif-tensorflow:uif1.1_rocm5.4.1_vai3.0_tf2.10
+      		docker run -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G 	amdih/uif-tensorflow:uif1.2_rocm5.6.1_vai3.5_tensorflow2.12
 
 	You can also pass the `-v` argument to mount any data directories from the host onto the container.
 
@@ -135,7 +111,7 @@ Install the Docker software. If Docker is not installed on your machine yet, see
 
 ## 1.2.2: Pull a Vitis AI Docker Image
 
-For instuctions on how to pull a Docker image for the Vitis AI development environment, see the [Vitis AI Docker Installation](https://gitenterprise.xilinx.com/Vitis/vitis-ai-staging/blob/vai3.0_update/docs/docs/install/install.html).
+For instuctions on how to pull a Docker image for the Vitis AI development environment, see the [Vitis AI Docker Installation](https://xilinx.github.io/Vitis-AI/3.5/html/docs/install/install#docker-install-and-verification).
 
 # 1.3: Install ZenDNN Package (for CPU Users)
 
@@ -164,7 +140,7 @@ TensorFlow+ZenDNN installation completes.
 
 To run inference on the PyTorch model using ZenDNN, download and install the PyTorch+ZenDNN package. Perform the following steps to complete the PyTorch+ZenDNN installation:
 
-1. Download PTv1.12+ZenDNN_v4.0 release package from the [AMD ZenDNN page](https://www.amd.com/en/developer/zendnn.html).
+1. Download PTv1.13+ZenDNN_v4.0 release package from the [AMD ZenDNN page](https://www.amd.com/en/developer/zendnn.html).
 
 2. Unzip the package. For example: `PT_v1.12.0_ZenDNN_v4.0_Python_v3.8.zip`.
 
@@ -202,18 +178,17 @@ To run inference on the ONNXRT model using ZenDNN, download and install the ONNX
 
 The AMD Inference Server is integrated with [ZenDNN](https://www.amd.com/en/developer/zendnn.html), [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) and [Vitis AI](https://www.xilinx.com/products/design-tools/vitis/vitis-ai.html) and can be used for [model serving](/docs/4_deploy_your_own_model/serve_model/servingmodelwithinferenceserver.md). To use the inference server, you need a Docker image for it, which you can get by using a prebuilt image or building one from the [inference server repository](https://github.com/Xilinx/inference-server) on GitHub.
 
-The instructions provided here are an overview, but you can see more complete information about the AMD Inference Server in the [documentation](https://xilinx.github.io/inference-server/0.3.0/index.html).
+The instructions provided here are an overview, but you can see more complete information about the AMD Inference Server in the [documentation](https://xilinx.github.io/inference-server/0.4.0/index.html).
 
 ## 1.4.1: Use a Prebuilt Docker Image
 
 You can pull the appropriate deployment Docker image(s) from DockerHub using:
 
 ```
-docker pull amdih/serve:uif1.1_zendnn_amdinfer_0.3.0
-docker pull amdih/serve:uif1.1_migraphx_amdinfer_0.3.0
+docker pull amdih/serve:uif1.2_migraphx_amdinfer_0.4.0
+docker pull amdih/serve:uif1.2_vai_amdinfer_0.4.0
+docker pull amdih/serve:uif1.2_zendnn_amdinfer_0.4.0
 ```
-
-The Vitis AI deployment image and development images for all platforms are not prebuilt and must be built by the user.
 
 ## 1.4.2: Build an Inference Server Docker Image
 
@@ -224,8 +199,8 @@ You need Docker (18.09+) to build the image.
 ```
 git clone https://github.com/Xilinx/inference-server
 cd inference-server
-# version 0.3.0 corresponds to this documentation
-git checkout v0.3.0
+# version 0.4.0 corresponds to this documentation
+git checkout v0.4.0
 python3 docker/generate.py
 ./amdinfer dockerize <flags>
 ```
@@ -235,10 +210,10 @@ python3 docker/generate.py
 - `--production`: Builds the deployment version of the image instead of the default development one.
 - `--vitis`: Enables FPGAs with Vitis AI in the image.
 - `--migraphx`: Enables GPUs with MIGraphX in the image.
-- `--tfzendnn=<path to zip>`: Enables CPUs with TF+ZenDNN in the image. You need to download [TF_v2.10_ZenDNN_v4.0_C++_API.zip](https://www.amd.com/en/developer/zendnn.html) and pass the path to it.
-- `--ptzendnn=<path to zip>`: Enables CPUs with PT+ZenDNN in the image. You need to download [PT_v1.12_ZenDNN_v4.0_C++_API.zip](https://www.amd.com/en/developer/zendnn.html) and pass the path to it.
+- `--tfzendnn=<path to zip>`: Enables CPUs with TF+ZenDNN in the image. You need to download [TF_v2.12_ZenDNN_v4.0_C++_API.zip](https://www.amd.com/en/developer/zendnn.html) and pass the path to it.
+- `--ptzendnn=<path to zip>`: Enables CPUs with PT+ZenDNN in the image. You need to download [PT_v1.13_ZenDNN_v4.0_C++_API.zip](https://www.amd.com/en/developer/zendnn.html) and pass the path to it.
 
- **Note:** The downloaded ZenDNN package(s) must be inside the inference-server folder since the Docker will not be able to access files outside the repository.
+ **Note:** The downloaded ZenDNN package(s) must be inside the inference-server folder since the Docker cannot access files outside the repository.
 
 You can pass these flags in any combination. Use `./amdinfer dockerize --help` for the full documentation on the available flags.
 

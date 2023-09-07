@@ -19,7 +19,7 @@ Unified Inference Frontend (UIF) accelerates deep learning inference solutions o
 
 ```
 
-    docker pull amdih/uif-pytorch:uif1.1_rocm5.4.1_vai3.0_py3.7_pytorch1.12
+    docker pull amdih/uif-pytorch:uif1.2_rocm5.6.1_vai3.5_py3.8_pytorch1.13
     
 ```
 
@@ -27,8 +27,8 @@ Unified Inference Frontend (UIF) accelerates deep learning inference solutions o
 
 The UIF Pytorch Tools Docker container includes:
 
-* ROCm™ 5.4.1
-* ROCm™ Pytorch 1.12
+* ROCm™ 5.6.1
+* ROCm™ Pytorch 1.13
 * ROCm™ MIGraphX inference engine
 * Scripts for downloading pretrained models from the Model Zoo
 * Sample Application
@@ -47,7 +47,7 @@ Use the following instructions to launch the Docker container for the applicatio
     docker run -it --cap-add=SYS_PTRACE --security-opt 
     seccomp=unconfined --device=/dev/kfd 
     --device=/dev/dri --group-add video --ipc=host --shm-size 8G 	
-    amdih/uif-pytorch:uif1.1_rocm5.4.1_vai3.0_py3.7_pytorch1.12
+    amdih/uif-pytorch:uif1.2_rocm5.6.1_vai3.5_py3.8_pytorch1.13
     
 ```
 

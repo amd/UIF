@@ -1,6 +1,6 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </tr>
  <tr>-
@@ -14,200 +14,171 @@
 - [2.1: UIF Model Zoo Introduction](#21-uif-model-zoo-introduction)
 	- [2.1.1: Standard Naming Rules](#211-standard-naming-rules)
 	- [2.1.2: Model List](#212-model-list)
-- [2.2: Get ZenDNN Models from UIF Model Zoo](#22-get-zendnn-models-from-uif-model-zoo)
-- [2.3: Get MIGraphX Models from UIF Model Zoo](#23-get-migraphx-models-from-uif-model-zoo)
-- [2.4: Set Up MIGraphX YModel](#24-set-up-migraphx-ymodel)
-- [2.5: Get Vitis AI Models from UIF Model Zoo](#25-get-vitis-ai-models-from-uif-model-zoo)
+    - [2.1.3: Once-For-All: Efficient Model Customization for Various Platforms](#213-once-for-all-ofa-efficient-model-customization-for-various-platforms)
+- [2.2: Get MIGraphX Models from UIF Model Zoo](#22-get-migraphx-models-from-uif-model-zoo)
+- [2.3: Set Up MIGraphX YModel](#23-set-up-migraphx-ymodel)
+- [2.4: Get Vitis AI Models from UIF Model Zoo](#24-get-vitis-ai-models-from-uif-model-zoo)
+- [2.5: Get ZenDNN Models from UIF Model Zoo](#25-get-zendnn-models-from-uif-model-zoo)
 
-  _Click [here](/README.md#implementing-uif-11) to go back to the UIF User Guide home page._
+  _Click [here](/README.md#implementing-uif-12) to go back to the UIF User Guide home page._
 
 # 2.1: UIF Model Zoo Introduction
 
-UIF 1.1 Model Zoo provides 30 models for AMD Instinct™ GPUs (MIGraphX) and 84 models for AMD EPYC™ CPUs (ZenDNN). In the Vitis™ AI development environment, 130 reference models for different FPGA adaptive platforms are also provided. Refer to the following model lists for details. 
+UIF 1.2 Model Zoo provides 50 models for AMD Instinct™ GPUs (MIGraphX) including 20 new models and 30 models inherited from UIF 1.1. The Vitis™ AI development environment provides 106 reference models for different FPGA adaptive platforms. 
+Also, you could use the 84 models for AMD EPYC™ CPUs (ZenDNN) inherited from UIF1.1.
+
+Model information is located in [model-list](/docs/2_model_setup/model-list). 
 
 **Note:** If a model is marked as limited to non-commercial use, you must comply with the [AMD license agreement for non-commercial models](/docs/2_model_setup/AMD-license-agreement-for-non-commercial-models.md). 
 
 
-**UIF 1.1 Models for Vitis AI**
+**UIF 1.2 Models for MIGraphX**
+	
+<details>
+ <summary>Click here to view details</summary>	
+	
+| #    | Model                   | Original Platform | Datatype FP32 | Datatype FP16 | Pruned | Reminder for limited use scope |
+| ---- | ----------------------- | ----------------- | ------------- | ------------- | ------ | ------------------------------ |
+| 1    | 2D-Unet                 | TensorFlow2       | √             | √             | ×      |                                |
+| 2    | 2D-Unet pruned0.7       | TensorFlow2       | √             | √             | √      |                                |
+| 3    | Albert-base             | PyTorch           | √             | √             | ×      |                                |
+| 4    | Albert-large            | PyTorch           | √             | √             | ×      |                                |
+| 5    | Bert-base               | TensorFlow2       | √             | √             | ×      |                                |
+| 6    | Bert-large              | TensorFlow2       | √             | √             | ×      |                                |
+| 7    | DETR                    | PyTorch           | √             | √             | ×      |                                |
+| 8    | DistillBert             | PyTorch           | √             | √             | ×      |                                |
+| 9    | DLRM (40M)              | PyTorch           | √             | √             | ×      | Non-Commercial Use Only        |
+| 10   | EfficientDet            | TensorFlow2       | √             | √             | ×      |                                |
+| 11   | GPT2-large              | PyTorch           | √             | √             | ×      |                                |
+| 12   | GPT2-medium             | PyTorch           | √             | √             | ×      |                                |
+| 13   | GPT2-XL                 | PyTorch           | √             | √             | ×      |                                |
+| 14   | MobileBert              | PyTorch           | √             | √             | ×      |                                |
+| 15   | PointPillars            | PyTorch           | √             | √             | ×      | Non-Commercial Use Only        |
+| 16   | Resnet50_v1.5 ofa       | PyTorch           | √             | √             | √      | Non-Commercial Use Only        |
+| 17   | RetinaNet               | PyTorch           | √             | √             | ×      |                                |
+| 18   | ViT                     | PyTorch           | √             | √             | ×      | Non-Commercial Use Only        |
+| 19   | W&D                     | PyTorch           | √             | √             | ×      |                                |
+| 20   | yolov3                  | TensorFlow2       | √             | √             | ×      |                                |
+	
+</details>	
+	
+
+**UIF 1.2 Models for Vitis AI**
 
 <details>
  <summary>Click here to view details</summary>
 	
 | #    | Model                        | Platform   | Datatype FP32 | Datatype INT8 | Pruned | Reminder for limited use scope |
 | ---- | :--------------------------- | :--------- | :-----------: | :-----------: | :----: | ------------------------------ |
-| 1    | inception-resnetv2           | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 2    | inceptionv1                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 3    | inceptionv1 pruned0.09       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 4    | inceptionv1 pruned0.16       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 5    | inceptionv2                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 6    | inceptionv3                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 7    | inceptionv3 pruned0.2        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 8    | inceptionv3 pruned0.4        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 9    | inceptionv4                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 10   | inceptionv4 pruned0.2        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 11   | inceptionv4 pruned0.4        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 12   | mobilenetv1_0.25             | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 13   | mobilenetv1_0.5              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 14   | mobilenetv1_1.0              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 15   | mobilenetv1_1.0 pruned0.11   | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 16   | mobilenetv1_1.0 pruned0.12   | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 17   | mobilenetv2_1.0              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 18   | mobilenetv2_1.4              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 19   | resnetv1_50                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 20   | resnetv1_50 pruned0.38       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 21   | resnetv1_50 pruned0.65       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 22   | resnetv1_101                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 23   | resnetv1_101 pruned0.35      | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 24   | resnetv1_101 pruned0.57      | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 25   | resnetv1_152                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 26   | resnetv1_152 pruned0.51      | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 27   | resnetv1_152pruned0.60       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 28   | vgg16                        | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 29   | vgg16 pruned0.43             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 30   | vgg16 pruned0.50             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 31   | vgg19                        | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 32   | vgg19 pruned0.24             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 33   | vgg19 pruned0.39             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 34   | resnetv2_50                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 35   | resnetv2_101                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 36   | resnetv2_152                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 37   | efficientnet-edgetpu-S       | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 38   | efficientnet-edgetpu-M       | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 39   | efficientnet-edgetpu-L       | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 40   | mlperf_resnet50              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 41   | mobilenetEdge1.0             | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 42   | mobilenetEdge0.75            | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 43   | resnet50                     | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 44   | mobilenetv1                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 45   | inceptionv3                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 46   | efficientnet-b0              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 47   | mobilenetv3                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 48   | efficientnet-lite            | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 49   | ViT                          | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 50   | ssdmobilenetv1               | TensorFlow |       √       |       √       |   ×    |                                |
-| 51   | ssdmobilenetv2               | TensorFlow |       √       |       √       |   ×    |                                |
-| 52   | ssdresnet50v1_fpn            | TensorFlow |       √       |       √       |   ×    |                                |
-| 53   | yolov3                       | TensorFlow |       √       |       √       |   ×    |                                |
-| 54   | mlperf_resnet34              | TensorFlow |       √       |       √       |   ×    |                                |
-| 55   | ssdlite_mobilenetv2          | TensorFlow |       √       |       √       |   ×    |                                |
-| 56   | ssdinceptionv2               | TensorFlow |       √       |       √       |   ×    |                                |
-| 57   | refinedet                    | TensorFlow |       √       |       √       |   ×    |                                |
-| 58   | efficientdet-d2              | TensorFlow |       √       |       √       |   ×    |                                |
-| 59   | yolov3                       | TensorFlow |       √       |       √       |   ×    |                                |
-| 60   | yolov4_416                   | TensorFlow |       √       |       √       |   ×    |                                |
-| 61   | yolov4_512                   | TensorFlow |       √       |       √       |   ×    |                                |
-| 62   | RefineDet-Medical            | TensorFlow |       √       |       √       |   ×    |                                |
-| 63   | RefineDet-Medical pruned0.50 | TensorFlow |       √       |       √       |   √    |                                |
-| 64   | RefineDet-Medical pruned0.75 | TensorFlow |       √       |       √       |   √    |                                |
-| 65   | RefineDet-Medical pruned0.85 | TensorFlow |       √       |       √       |   √    |                                |
-| 66   | RefineDet-Medical pruned0.88 | TensorFlow |       √       |       √       |   √    |                                |
-| 67   | mobilenetv2 (segmentation)   | TensorFlow |       √       |       √       |   ×    |                                |
-| 68   | erfnet                       | TensorFlow |       √       |       √       |   ×    |                                |
-| 69   | 2d-unet                      | TensorFlow |       √       |       √       |   ×    |                                |
-| 70   | bert-base                    | TensorFlow |       √       |       √       |   ×    |                                |
-| 71   | superpoint                   | TensorFlow |       √       |       √       |   ×    |                                |
-| 72   | HFNet                        | TensorFlow |       √       |       √       |   ×    |                                |
-| 73   | rcan                         | TensorFlow |       √       |       √       |   ×    |                                |
-| 74   | inceptionv3                  | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 75   | inceptionv3 pruned0.3        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 76   | inceptionv3 pruned0.4        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 77   | inceptionv3 pruned0.5        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 78   | inceptionv3 pruned0.6        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 79   | squeezenet                   | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 80   | resnet50_v1.5                | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 81   | resnet50_v1.5 pruned0.3      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 82   | resnet50_v1.5 pruned0.4      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 83   | resnet50_v1.5 pruned0.5      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 84   | resnet50_v1.5 pruned0.6      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 85   | resnet50_v1.5 pruned0.7      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 86   | OFA-resnet50                 | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 87   | OFA-resnet50 pruned0.45      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 88   | OFA-resnet50 pruned0.60      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 89   | OFA-resnet50 pruned0.74      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 90   | OFA-resnet50 pruned0.88      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
-| 91   | OFA-depthwise-resnet50       | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
-| 92   | vehicle type classification  | PyTorch    |       √       |       √       |   ×    |                                |
-| 93   | vehicle make classification  | PyTorch    |       √       |       √       |   ×    |                                |
-| 94   | vehicle color classification | PyTorch    |       √       |       √       |   ×    |                                |
-| 95   | OFA-yolo                     | PyTorch    |       √       |       √       |   ×    |                                |
-| 96   | OFA-yolo pruned0.3           | PyTorch    |       √       |       √       |   √    |                                |
-| 97   | OFA-yolo pruned0.6           | PyTorch    |       √       |       √       |   √    |                                |
-| 98   | yolox-nano                   | PyTorch    |       √       |       √       |   ×    |                                |
-| 99   | yolov4csp                    | PyTorch    |       √       |       √       |   ×    |                                |
-| 100  | yolov5-large                 | PyTorch    |       √       |       √       |   ×    |                                |
-| 101  | yolov5-nano                  | PyTorch    |       √       |       √       |   ×    |                                |
-| 102  | yolov5s6                     | PyTorch    |       √       |       √       |   ×    |                                |
-| 103  | yolov6m                      | PyTorch    |       √       |       √       |   ×    |                                |
-| 104  | pointpillars                 | PyTorch    |       √       |       √       |   ×    |                                |
-| 105  | CLOCs                        | PyTorch    |       √       |       √       |   ×    |                                |
-| 106  | Enet                         | PyTorch    |       √       |       √       |   ×    |                                |
-| 107  | SemanticFPN-resnet18         | PyTorch    |       √       |       √       |   ×    |                                |
-| 108  | SemanticFPN-mobilenetv2      | PyTorch    |       √       |       √       |   ×    |                                |
-| 109  | salsanext pruned0.60         | PyTorch    |       √       |       √       |   √    |                                |
-| 110  | salsanextv2 pruned0.75       | PyTorch    |       √       |       √       |   √    |                                |
-| 111  | SOLO                         | PyTorch    |       √       |       √       |   ×    |                                |
-| 112  | HRNet                        | PyTorch    |       √       |       √       |   ×    |                                |
-| 113  | CFLOW                        | PyTorch    |       √       |       √       |   ×    |                                |
-| 114  | 3D-UNET                      | PyTorch    |       √       |       √       |   ×    |                                |
-| 115  | MaskRCNN                     | PyTorch    |       √       |       √       |   ×    |                                |
-| 116  | bert-base                    | PyTorch    |       √       |       √       |   ×    |                                |
-| 117  | bert-large                   | PyTorch    |       √       |       √       |   ×    |                                |
-| 118  | bert-tiny                    | PyTorch    |       √       |       √       |   ×    |                                |
-| 119  | face-mask-detection          | PyTorch    |       √       |       √       |   ×    |                                |
-| 120  | movenet                      | PyTorch    |       √       |       √       |   ×    |                                |
-| 121  | fadnet                       | PyTorch    |       √       |       √       |   ×    |                                |
-| 122  | fadnet pruned0.65            | PyTorch    |       √       |       √       |   √    |                                |
-| 123  | fadnetv2                     | PyTorch    |       √       |       √       |   ×    |                                |
-| 124  | fadnetv2 pruned0.51          | PyTorch    |       √       |       √       |   √    |                                |
-| 125  | psmnet pruned0.68            | PyTorch    |       √       |       √       |   √    |                                |
-| 126  | pmg                          | PyTorch    |       √       |       √       |   ×    |                                |
-| 127  | SESR-S                       | PyTorch    |       √       |       √       |   ×    |                                |
-| 128  | OFA-rcan                     | PyTorch    |       √       |       √       |   ×    |                                |
-| 129  | DRUNet                       | PyTorch    |       √       |       √       |   ×    |                                |
-| 130  | xilinxSR                     | PyTorch    |       √       |       √       |   ×    |                                |
+| 1    | inceptionv1                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 2    | inceptionv1 pruned0.09       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 3    | inceptionv1 pruned0.16       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 4    | inceptionv3                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 5    | inceptionv3 pruned0.2        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 6    | inceptionv3 pruned0.4        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 7    | inceptionv4                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 8    | inceptionv4 pruned0.2        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 9    | inceptionv4 pruned0.4        | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 10   | mobilenetv1_0.25             | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 11   | mobilenetv1_1.0              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 12   | mobilenetv1_1.0 pruned0.11   | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 13   | mobilenetv1_1.0 pruned0.12   | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 14   | mobilenetv2_1.0              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 15   | mobilenetv2_1.4              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 16   | resnetv1_50                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 17   | resnetv1_50 pruned0.38       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 18   | resnetv1_50 pruned0.65       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 19   | resnetv1_101                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 20   | resnetv1_101 pruned0.35      | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 21   | resnetv1_101 pruned0.57      | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 22   | resnetv1_152                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 23   | resnetv1_152 pruned0.51      | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 24   | resnetv1_152pruned0.60       | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 25   | vgg16                        | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 26   | vgg16 pruned0.43             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 27   | vgg16 pruned0.50             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 28   | vgg19                        | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 29   | vgg19 pruned0.24             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 30   | vgg19 pruned0.39             | TensorFlow |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 31   | resnetv2_50                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 32   | resnetv2_101                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 33   | resnetv2_152                 | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 34   | efficientnet-edgetpu-S       | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 35   | efficientnet-edgetpu-M       | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 36   | efficientnet-edgetpu-L       | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 37   | mlperf_resnet50              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 38   | resnet50                     | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 39   | mobilenetv1                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 40   | inceptionv3                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 41   | efficientnet-b0              | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 42   | mobilenetv3                  | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 43   | efficientnet-lite            | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 44   | ViT                          | TensorFlow |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 45   | ssdmobilenetv1               | TensorFlow |       √       |       √       |   ×    |                                |
+| 46   | ssdmobilenetv2               | TensorFlow |       √       |       √       |   ×    |                                |
+| 47   | yolov3                       | TensorFlow |       √       |       √       |   ×    |                                |
+| 48   | mlperf_resnet34              | TensorFlow |       √       |       √       |   ×    |                                |
+| 49   | efficientdet-d2              | TensorFlow |       √       |       √       |   ×    |                                |
+| 50   | yolov3                       | TensorFlow |       √       |       √       |   ×    |                                |
+| 51   | yolov4_416                   | TensorFlow |       √       |       √       |   ×    |                                |
+| 52   | yolov4_512                   | TensorFlow |       √       |       √       |   ×    |                                |
+| 53   | RefineDet-Medical            | TensorFlow |       √       |       √       |   ×    |                                |
+| 54   | RefineDet-Medical pruned0.50 | TensorFlow |       √       |       √       |   √    |                                |
+| 55   | RefineDet-Medical pruned0.75 | TensorFlow |       √       |       √       |   √    |                                |
+| 56   | RefineDet-Medical pruned0.85 | TensorFlow |       √       |       √       |   √    |                                |
+| 57   | RefineDet-Medical pruned0.88 | TensorFlow |       √       |       √       |   √    |                                |
+| 58   | bert-base                    | TensorFlow |       √       |       √       |   ×    |                                |
+| 59   | superpoint                   | TensorFlow |       √       |       √       |   ×    |                                |
+| 60   | HFNet                        | TensorFlow |       √       |       √       |   ×    |                                |
+| 61   | rcan                         | TensorFlow |       √       |       √       |   ×    |                                |
+| 62   | inceptionv3                  | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 63   | inceptionv3 pruned0.3        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 64   | inceptionv3 pruned0.4        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 65   | inceptionv3 pruned0.5        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 66   | inceptionv3 pruned0.6        | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 67   | squeezenet                   | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 68   | resnet50_v1.5                | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 69   | resnet50_v1.5 pruned0.3      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 70   | resnet50_v1.5 pruned0.4      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 71   | resnet50_v1.5 pruned0.5      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 72   | resnet50_v1.5 pruned0.6      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 73   | resnet50_v1.5 pruned0.7      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 74   | OFA-resnet50                 | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 75   | OFA-resnet50 pruned0.45      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 76   | OFA-resnet50 pruned0.60      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 77   | OFA-resnet50 pruned0.74      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 78   | OFA-resnet50 pruned0.88      | PyTorch    |       √       |       √       |   √    | Non-Commercial Use Only        |
+| 79   | OFA-depthwise-resnet50       | PyTorch    |       √       |       √       |   ×    | Non-Commercial Use Only        |
+| 80   | vehicle type classification  | PyTorch    |       √       |       √       |   ×    |                                |
+| 81   | vehicle make classification  | PyTorch    |       √       |       √       |   ×    |                                |
+| 82   | vehicle color classification | PyTorch    |       √       |       √       |   ×    |                                |
+| 83   | OFA-yolo                     | PyTorch    |       √       |       √       |   ×    |                                |
+| 84   | OFA-yolo pruned0.3           | PyTorch    |       √       |       √       |   √    |                                |
+| 85   | OFA-yolo pruned0.6           | PyTorch    |       √       |       √       |   √    |                                |
+| 86   | yolox-nano                   | PyTorch    |       √       |       √       |   ×    |                                |
+| 87   | yolov4csp                    | PyTorch    |       √       |       √       |   ×    |                                |
+| 88   | yolov6m                      | PyTorch    |       √       |       √       |   ×    |                                |
+| 89   | pointpillars                 | PyTorch    |       √       |       √       |   ×    |                                |
+| 90   | HRNet                        | PyTorch    |       √       |       √       |   ×    |                                |
+| 91   | 3D-UNET                      | PyTorch    |       √       |       √       |   ×    |                                |
+| 92   | bert-base                    | PyTorch    |       √       |       √       |   ×    |                                |
+| 93   | bert-large                   | PyTorch    |       √       |       √       |   ×    |                                |
+| 94   | bert-tiny                    | PyTorch    |       √       |       √       |   ×    |                                |
+| 95   | face-mask-detection          | PyTorch    |       √       |       √       |   ×    |                                |
+| 96   | movenet                      | PyTorch    |       √       |       √       |   ×    |                                |
+| 97   | fadnet                       | PyTorch    |       √       |       √       |   ×    |                                |
+| 98   | fadnet pruned0.65            | PyTorch    |       √       |       √       |   √    |                                |
+| 99   | fadnetv2                     | PyTorch    |       √       |       √       |   ×    |                                |
+| 100  | fadnetv2 pruned0.51          | PyTorch    |       √       |       √       |   √    |                                |
+| 101  | psmnet pruned0.68            | PyTorch    |       √       |       √       |   √    |                                |
+| 102  | SESR-S                       | PyTorch    |       √       |       √       |   ×    |                                |
+| 103  | OFA-rcan                     | PyTorch    |       √       |       √       |   ×    |                                |
+| 104  | xilinxSR                     | PyTorch    |       √       |       √       |   ×    |                                |
+| 105  | yolov7                       | PyTorch    |       √       |       √       |   ×    |                                |
+| 106  | 2D-UNET                      | PyTorch    |       √       |       √       |   ×    |                                |
 
 </details>
 
-**UIF 1.1 Models for MIGraphX**
-	
-<details>
- <summary>Click here to view details</summary>	
-
-| #    | Model                   | Original Platform | Converted Format | Datatype FP32 | Datatype FP16 | Datatype INT8 | Pruned | Reminder for limited use scope |
-| ---- | ----------------------- | ----------------- | ---------------- | ------------- | ------------- | ------------- | ------ | ------------------------------ |
-| 1    | Resnet50_v1             | TensorFlow        | .PB              | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 2    | Resnet50_v1 pruned0.5   | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 3    | Resnet50_v1 pruned0.7   | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 4    | Inception_v3            | TensorFlow        | .PB              | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 5    | Inception_v3 pruned0.4  | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 6    | Inception_v3 pruned0.6  | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 7    | Mobilenet_v1            | TensorFlow        | .PB              | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 8    | Mobilenet_v1 pruned0.3  | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 9    | Mobilenet_v1 pruned0.5  | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 10   | Resnet34-ssd            | TensorFlow        | .PB              | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 11   | Resnet34-ssd pruned0.19 | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 12   | Resnet34-ssd pruned0.29 | TensorFlow        | .PB              | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 13   | Bert-base               | PyTorch           | .ONNX            | √             | √             | ×             | ×      |                                |
-| 14   | Bert-large              | PyTorch           | .ONNX            | √             | √             | ×             | ×      |                                |
-| 15   | DLRM                    | PyTorch           | .ONNX            | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 16   | Resnet50_v1.5           | PyTorch           | .ONNX            | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 17   | Resnet50_v1.5 pruned0.4 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 18   | Resnet50_v1.5 pruned0.6 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 19   | Inception_v3            | PyTorch           | .ONNX            | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 20   | Inception_v3 pruned0.4  | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 21   | Inception_v3 pruned0.6  | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 22   | Reid_resnet50           | PyTorch           | .ONNX            | √             | √             | ×             | ×      | Non-Commercial Use Only        |
-| 23   | Reid_resnet50 pruned0.6 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 24   | Reid_resnet50 pruned0.7 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 25   | OFA_resnet50 pruned0.45 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 26   | OFA_resnet50 pruned0.60 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 27   | OFA_resnet50 pruned0.74 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 28   | OFA_resnet50 pruned0.88 | PyTorch           | .ONNX            | √             | √             | ×             | √      | Non-Commercial Use Only        |
-| 29   | GPT-2 small             | PyTorch           | .ONNX            | √             | √             | ×             | ×      |                                |
-| 30   | DistillGPT              | PyTorch           | .ONNX            | √             | √             | ×             | ×      |                                |
-
-</details>	
-	
 **UIF 1.1 Models for ZenDNN**
 	
 <details>
@@ -301,31 +272,150 @@ UIF 1.1 Model Zoo provides 30 models for AMD Instinct™ GPUs (MIGraphX) and 84 
 | 84   | VGG16 pruned0.50        | ONNXRT            | .ONNX            | √             | ×             | √             | √      | Non-Commercial Use Only        |
 
 </details>	
-	
+
 
 ### 2.1.1: Standard Naming Rules
 
-Model name: `F_M_(D)_H_W_(P)_C_V_Z`
+Model name: `F_M_(P)_V_Z`
 * `F` specifies the training framework: `tf` is TensorFlow 1.x, `tf2` is TensorFlow 2.x, `pt` is PyTorch, `onnx` is ONNXRT.
 * `M` specifies the model.
-* `D` specifies the dataset. It is optional depending on whether the dataset is public or private.
-* `H` specifies the height of input data.
-* `W` specifies the width of input data.
 * `P` specifies the pruning ratio, meaning how much computation is reduced. It is optional depending on whether the model is pruned or not.
-* `C` specifies the computation of the model: how many Gops per image.
 * `V` specifies the version of UIF.
 * `Z` specifies the version of ZenDNN or MIGraphX.
 
-For example, `pt_inceptionv3_imagenet_299_299_0.6_4.25G_1.1_Z4.0` is an `Inception v3` model trained with `PyTorch` using `Imagenet` dataset, the input size is `299*299`, `60%` pruned, the computation per image is `4.25G flops`, the UIF release version is `1.1`, and ZenDNN version is `4.0`.
-
-`pt_resnet50v1.5_imagenet_224_224_8.2G_1.1_M2.4` is a `resnet50 v1.5` model trained with `PyTorch` using the `Imagenet` dataset, the input size is `224*224`, `No` pruned, the computation per image is `8.2G flops`, the UIF release version is `1.1`, and the MIGraphX version is `2.4`.
+For example, `pt_resnet50v1.5_pruned0.6_1.2_M2.6` is a `resnet50 v1.5` model trained with `PyTorch`, `60%` pruned, the UIF release version is `1.2`, and the MIGraphX version is `2.6`.
 
 ### 2.1.2: Model List
 
-Visit [model-list](/docs/2_model_setup/model-list). The models are named according to standard naming rules. From here, you can get a download link and MD5 checksum of all released models running on different hardware platforms. You can download it manually or use the automatic download script described below to search for models by keyword.                                 
+Visit [model-list](/docs/2_model_setup/model-list) The models are named according to standard naming rules. 
+
+You can get a download link and MD5 checksum of all released models running on different hardware platforms from here. You can download it manually or use the the following automatic download script to search for models by keyword.   
+
+### 2.1.3: Once-For-All (OFA): Efficient Model Customization for Various Platforms
+
+Once-For-All (OFA) is an efficient neural architecture search (NAS) method that enables the customization of sub-networks for various hardware platforms. It decouples training and search, enabling quick derivation of specialized models optimized for specific platforms with efficient inference performance. OFA offers the following benefits:
+
+1. OFA requires only one training process and can specialize in diverse hardware platforms (for example, DPU, GPU, CPU, IPU) without incurring the heavy computation costs associated with manual design or conventional RL-based NAS methods.
+
+2. By decoupling supernet training and subnetwork searching, OFA optimizes networks with actual latency constraints of a specific hardware platform, avoiding discrepancies between estimated and actual latencies.
+
+3. OFA offers strong flexibility and scalability regarding the search space, supporting various network architectures (for example, CNN and Transformer) with different granularities (for example, operation-wise, layer-wise, block-wise) to cater to different tasks (for example, CV, NLP). 
+
+4. Extensive experiments with OFA demonstrate consistent performance acceleration while maintaining similar accuracy levels compared to baselines on different devices. For instance, OFA-ResNet achieves a speedup ratio of 69% on MI100, 78% on MI210, and 97% on Navi2 compared to ResNet50 baselines with a batch size of 1 and prune ratio of 78%.
+
+5. OFA has the potential to search for optimized large language models (LLM) by stitching pretrained models for accuracy-efficiency trade-offs. A proof of concept for Vision Transformer (ViT) shows that OFA can derive an optimized ViT with a 20% to 40% speedup ratio compared to ViT-base on MI100.
+
+#### 2.1.3.1: OFA-ResNet for AMD GPUs with MIGraphX
+
+- Task Description: This case aims to search for ResNet-like models optimized for AMD GPUs with MIGraphX. The latency on MI100 is used as constraints for optimization. Channel numbers are aligned with GPU capabilities.
+- Search Space Design: The search space has the following parameters:
+  - Stage output ratio (The ratio of output channel for each stage of the model): [0.65, 0.8, 1.0]
+  - Depth (The number of blocks for each stage): [0, 1, 2]
+  - Expand ratio (The ratio of output channel for each block in each stage): [0.2, 0.25, 0.35]
+  - Resolution (The input size of the model): [128, 160, 192, 224]
+- Results: The OFA-ResNet model achieves a speedup ratio of 69% on MI100, 78% on MI210, 97% on Navi2 compared to ResNet50 baseline (with batch size of 1 and pruned ratio of 78%) while maintaining similar accuracy.
+
+#### 2.1.3.2: Performance Comparison
+
+| Model       | Float Accuracy (ImageNet 1K) | FLOPs (G) | Pruned Ratio | Speedup ratio on MI100 | Speedup ratio on MI210 | Speedup ratio on Navi2 |
+|-------------|------------------------------|-----------|--------------|------------------------|------------------------|------------------------|
+| ResNet50    | 76.1%                        | 8.2       | 0%           | -                      | -                      | -                      |
+| OFA-ResNet  | 75.8%                        | 1.77      | 78%          | 1.69x                  | 1.78x                  | 1.97x                  |
 
 
-# 2.2: Get ZenDNN Models from UIF Model Zoo
+# 2.2: Get MIGraphX Models from UIF Model Zoo
+
+Perform the following steps to install UIF 1.2 models:
+
+1. Set up and run the model downloader tool.
+
+    ```
+    git clone https://github.com/AMD/uif.git
+    cd uif/docs/2_model_setup
+    python3 downloader.py
+    ```
+    It has the following provision to specify the frameworks:
+
+    ```
+    Tip:
+    You need to input framework and model name. Use space divide such as tf vgg16
+    tf:tensorflow1.x  tf2:tensorflow2.x  onnx:onnxruntime  dk:darknet  pt:pytorch  all: list all model
+    input:
+    ```
+2. Download UIF 1.2 GPU models. Provide `pt` as input to get the list of models.
+
+    ```
+	input:pt
+	chose model
+	0 : all
+    1 : pt_inceptionv3_1.2_M2.6
+    2 : pt_bert_base_1.2_M2.6
+    3 : pt_bert_large_1.2_M2.6
+    
+
+	...
+	input num:
+    ```
+
+The models with 1.2 as suffix are UIF 1.2 models. MI100 means the model has been tuned for MI-100 GPU, and MI210 indicates the model has been tuned for MI-210 GPU.  Without either of these suffixes, the model is a model version that should be used for training, including the GPU example later in this section.
+
+    ```
+	input num:1
+	chose model type
+	0: all
+	1: GPU
+	2: MI100
+	3: MI200
+	...
+	...
+    input num:
+    
+    ```
+    
+Provide `1` as input to download the GPU model.
+
+    ```
+    input num:1
+    pt_inceptionv3_1.2_M2.6.zip
+	                                              100.0%|100%
+	done
+    ```
+
+# 2.3: Set Up MIGraphX YModel
+
+YModel is designed to provide significant inference performance through MIGraphX. Prior to the introduction of YModel, performance tuning was conditioned by having tuned kernel configs stored in a `/home` local User DB. If users move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configs and corresponding solvers. Tuning is time consuming, and if the users have not performed tuning, they would see discrepancies between expected or claimed inference performance and the actual inference performance. This leads to repetitive and time-consuming tuning tasks for each user. 
+
+MIGraphX introduces a feature known as YModel that stores the kernel config parameters found during tuning in the same file as the model itself. This ensures the same level of expected performance even when a model is copied to a different user or system.   
+
+**Note:** The YModel feature is available starting with the ROCm™ v5.4.1 and UIF v1.1 releases. For more information on ROCm and the YModel feature, see https://rocm.docs.amd.com/en/latest/examples/machine_learning/migraphx_optimization.html#ymodel. 
+
+**Note:** YModel does not support MIOpen fusions and must be disabled while generating YModel.
+
+To set up the YModel for GPUs:
+
+1. Tune the kernels for your architecture with `MIOPEN_FIND_ENFORCE=3 migraphx-driver run <file.onnx>`.
+
+2. Build a `*.mxr` file with a compile option: 
+
+```
+	migraphx-driver compile file.onnx --enable-offload-copy --gpu --binary -o file.mxr
+	
+```
+
+3. Run the (Python) program with a command line: 
+
+```
+	model=migraphx.load("file.mxr")
+```
+
+**Note:** If the Model Zoo contains a `*.mxr` file for your architecture, you can skip steps 1 and 2. 
+
+# 2.4: Get Vitis AI Models from UIF Model Zoo
+
+Follow the instructions in the [Vitis AI](https://github.com/Xilinx/Vitis-AI/tree/master/model_zoo) Model Zoo page.
+
+
+# 2.5: Get ZenDNN Models from UIF Model Zoo
 
 Perform the following steps to install UIF 1.1 models:
 
@@ -447,96 +537,6 @@ Perform the following steps to install UIF 1.1 models:
 	                                              100.0%|100%
 	done
     ```
-    
-# 2.3: Get MIGraphX Models from UIF Model Zoo
-
-Perform the following steps to install UIF 1.1 models:
-
-1. Set up and run the model downloader tool.
-
-    ```
-    git clone https://github.com/AMD/uif.git
-    cd uif/docs/2_model_setup
-    python3 downloader.py
-    ```
-    It has the following provision to specify the frameworks:
-
-    ```
-    Tip:
-    You need to input framework and model name, use space divide such as tf vgg16
-    tf:tensorflow1.x  tf2:tensorflow2.x  onnx:onnxruntime  dk:darknet  pt:pytorch  all: list all model
-    input:
-    ```
-2. Download UIF 1.1 GPU models. Provide `pt` as input to get the list of models.
-
-    ```
-	input:pt
-	chose model
-	0 : all
-    1 : pt_inceptionv3_imagenet_299_299_11.4G_1.1_M2.4
-    2 : pt_3dunet_kits19_128_128_128_0.3_763.8G_1.1_Z4.0
-    3 : pt_bert_base_SQuADv1.1_384_70.66G_1.1_M2.4
-    4 : pt_bert_large_SQuADv1.1_384_246.42G_1.1_M2.4
-    5 : pt_personreid-res50_market1501_256_128_0.4_3.3G_1.1_Z4.0
-
-	...
-	input num:
-    ```
-
-The models with 1.1 as suffix are UIF 1.1 models. MI100 means the model has been tuned for MI-100 GPU, and MI210 indicates the model has been tuned for MI-210 GPU.  Without either of these suffixes, the model is a model version that should be used for training, including the GPU example later in this chapter.
-
-    ```
-	input num:1
-	chose model type
-	0: all
-	1: GPU
-	2: MI100
-	3: MI200
-	...
-	...
-    input num:
-    
-    ```
-    
-Provide `1` as input to download the GPU model.
-
-    ```
-    input num:1
-    pt_inceptionv3_imagenet_299_299_11.4G_1.1_M2.4.zip
-	                                              100.0%|100%
-	done
-    ```
-
-# 2.4: Set Up MIGraphX YModel
-
-YModel is designed to provide significant inference performance through MIGraphX. Prior to the introduction of YModel, performance tuning was conditioned by having tuned kernel configs stored in a `/home` local User DB. If users move their model to a different server or allow a different user to use it, they would have to run through the MIOpen tuning process again to populate the next User DB with the best kernel configs and corresponding solvers. Tuning is time consuming, and if the users have not performed tuning, they would see discrepancies between expected or claimed inference performance and the actual inference performance. This leads to repetitive and time-consuming tuning tasks for each user. 
-
-MIGraphX introduces a feature known as YModel that stores the kernel config parameters found during tuning in the same file as the model itself. This ensures the same level of expected performance even when a model is copied to a different user or system.   
-
-**Note:** The YModel feature is available in the ROCm™ v5.4.1 and UIF v1.1 release. For more information on ROCm, refer to https://docs.amd.com.
-
-To set up the YModel for GPUs:
-
-1. Tune the kernels for your architecture with `MIOPEN_FIND_ENFORCE=3 migraphx-driver run <file.onnx>`.
-
-2. Build a `*.mxr` file with a compile option: 
-
-```
-	migraphx-driver compile file.onnx --enable-offload-copy --gpu --binary -o file.mxr
-	
-```
-
-3. Run the (Python) program with a command line: 
-
-```
-	model=migraphx.load("file.mxr")
-```
-
-**Note:** If the Model Zoo contains a `*.mxr` file for your architecture, you can skip steps 1 and 2. 
-
-# 2.5: Get Vitis AI Models from UIF Model Zoo
-
-Follow the instructions in the [Vitis AI](https://github.com/Xilinx/Vitis-AI/tree/master/model_zoo) Model Zoo page.
 
 <hr/>
 

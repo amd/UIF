@@ -1,6 +1,6 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </tr>
  <tr>
@@ -16,7 +16,9 @@ For testing, you can use the development image and move to the deployment image 
 In all cases, you must configure your host machines for the appropriate hardware backends as described in the [UIF installation instructions](/docs/1_installation/installation.md), such as installing the ROCm™ platform for GPUs and XRT for FPGAs.
 There are several methods you can use to serve your models with different benefits and tradeoffs, which are discussed here.
 
-This UIF release uses AMD Inference Server 0.3.0. The full documentation for the server for this release is available [online](https://xilinx.github.io/inference-server/0.3.0/index.html).
+
+This UIF release uses AMD Inference Server 0.4.0. The full documentation for the server for this release is available [online](https://xilinx.github.io/inference-server/0.4.0/index.html).
+
 The latest version of the server and documentation are available on [GitHub](https://github.com/Xilinx/inference-server).
 
 # Table of Contents
@@ -32,7 +34,7 @@ The latest version of the server and documentation are available on [GitHub](htt
 
 Using the development image to serve your model allows you to have greater control and visibility into its operation, which can be useful for debugging and analyzing. 
 You must build the development image on a Linux host machine before using it.
-The process to build and run the development image is documented in the Inference Server's [development quick start guide](https://xilinx.github.io/inference-server/0.3.0/quickstart_development.html).
+The process to build and run the development image is documented in the Inference Server's [development quick start guide](https://xilinx.github.io/inference-server/main/quickstart_development.html).
 
 The development container mounts your working directory inside so you can place the model you want to serve somewhere in that tree.
 In the container, you can compile the server in debug or release configuration and start it.
@@ -43,17 +45,33 @@ At load-time, you can pass worker-specific arguments to configure how it behaves
 In particular, you pass the path to your model to the worker at load-time.
 After the load succeeds, the server will respond with an endpoint string that you will need for subsequent requests.
 
+## 4.4.1.1  Naming Format for *.mxr* Files
+
+In UIF 1.2, the MIGraphX worker requires a naming format for *.mxr files that differs from the names used for Modelzoo in Section 2.  The required format is 
+*\<model\>_bXX.mxr* where XX is the compiled model's batch size. For example, *resnet50_b32.mxr*.  If you use compiled *.mxr models that come from any source other than what the MIGraphX worker itself compiles, you must rename them to match this format. For example, 
+
+```
+    $ cp resnet50.mxr resnet50_b32.mxr
+``` 
+
+When requesting a worker, the _bXX suffix must be left out of the requested model name, so for this example the request would contain parameters *batch=32* and *model="resnet50.mxr"* or simply *model="resnet50"*.
+
+## 4.4.1.2  Sending Server Requests
 You can send requests to the server from inside or outside the container.
-From inside the container, the default address for HTTP and gRPC will be `http://127.0.0.1:8998` and `127.0.0.1:50051`, but this can be changed when starting the server.
-From the outside, the easiest approach is to use `docker ps` to list the ports the development container has exposed.
-From the same host machine, you can use `http://127.0.0.1:<port>` corresponding to the port listed that maps to 8998 in the container for HTTP requests.
-When you have the address and the endpoint returned by the load, you can [make requests](#443-making-requests-with-http-or-grpc) to the server.
+
+From inside the container, the default address for HTTP and gRPC is `http://127.0.0.1:8998` and `127.0.0.1:50051`. However, users can change the default address when starting the server.
+
+- From the outside, the easiest approach is to use `docker ps` to list the ports the development container has exposed.
+- From the same host machine, you can use `http://127.0.0.1:<port>` corresponding to the port listed that maps to 8998 in the container for HTTP requests.
+
+  When you have the address and the endpoint returned by the load, you can [make requests](#443-making-requests-with-http-or-grpc) to the server.
 
 # 4.4.2: Using the Deployment Image
 
-The deployment image is a minimal image that contains a precompiled server executable that starts automatically when the container starts. This image is suitable for deployment with Docker, Kubernetes, or [KServe](https://xilinx.github.io/inference-server/0.3.0/kserve.html). With the latter two methods, you need to install and [set up a Kubernetes cluster](https://kubernetes.io/docs/setup/).
+The deployment image is a minimal image that contains a precompiled server executable that starts automatically when the container starts. This image is suitable for deployment with Docker, Kubernetes, or [KServe](https://xilinx.github.io/inference-server/0.4.0/kserve.html). With the latter two methods, you need to install and [set up a Kubernetes cluster](https://kubernetes.io/docs/setup/).
 
-The process to build and run the deployment image is documented in the Inference Server's [Docker deployment guide](https://xilinx.github.io/inference-server/0.3.0/docker.html) and the [KServe deployment guide](https://xilinx.github.io/inference-server/0.3.0/kserve.html). As with the development image, you will need to load a worker to serve your model and use the endpoint it returns to make requests.
+The process to build and run the deployment image is documented in the Inference Server's [deployment guide](https://xilinx.github.io/inference-server/0.4.0/deployment.html) and the [KServe deployment guide](https://xilinx.github.io/inference-server/0.4.0/kserve.html). As with the development image, you will need to load a worker to serve your model and use the endpoint it returns to make requests.
+
 
 When the container is up, get the address for the server. With Docker, you can use `docker ps` to get the exposed ports.
 With KServe, there is a [separate process](https://kserve.github.io/website/master/get_started/first_isvc/#3-check-inferenceservice-status) to determine the ingress address.
@@ -66,16 +84,23 @@ Making requests to the server is most easily accomplished with the Python librar
 
 While you can use `curl` to query the status endpoints, making more complicated inference requests using `curl` can be difficult.
 In the development container, the Python library is installed as part of the server compilation so you can use it from there.
-To use the library elsewhere, you need to [install it](https://xilinx.github.io/inference-server/0.3.0/python.html#install-the-python-library) yourself.
 
-More detailed information and discussion around making requests using Python is in the [Python examples with ResNet50](https://xilinx.github.io/inference-server/0.3.0/example_resnet50_python.html) and the corresponding working [Python scripts in the repository](https://github.com/Xilinx/inference-server/tree/main/examples/resnet50).
+To use the library elsewhere, you need to install it with pip:
+
+```
+    $ pip install amdinfer
+``` 
+
+More detailed information and discussion around making requests using Python is in the [Python examples with ResNet50](https://xilinx.github.io/inference-server/0.4.0/example_resnet50_python.html) and the corresponding working [Python scripts in the repository](https://github.com/Xilinx/inference-server/tree/main/examples/resnet50).
+
 
 An outline of the steps is provided here, where it is assumed you have started the server and loaded some models that you want to use for inference. In general, the process to make a request has the following steps:
 
 1. Make a client.
-2. Prepare a request.
-3. Send the request.
-4. Check the response.
+2. Request a worker from the server.
+3. Prepare a request.
+4. Send the request.
+5. Check the response.
 
 You can make an `HttpClient` or a `GrpcClient` depending on which protocol you want to use. As part of the constructor, you provide the address for the server that the client is supposed to use.
 
@@ -144,4 +169,3 @@ UIF is licensed under [Apache License Version 2.0](/LICENSE). Refer to the [LICE
 Contact uif_support@amd.com for questions, issues, and feedback on UIF.
 
 Submit your questions, feature requests, and bug reports on the [GitHub issues](https://github.com/amd/UIF/issues) page.
-

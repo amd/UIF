@@ -1,6 +1,6 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </tr>
  <tr>
@@ -32,7 +32,7 @@ ROCGDB can do four main kinds of things to help you catch bugs in the act:
 - Examine what has happened, when your program has stopped.
 - Change things in your program, so you can experiment with correcting the effects of one bug and go on to learn about another.
 
-For more information about ROCDebugger, refer to the [ROCDebugger User Guide](https://docs.amd.com/category/compilers_and_tools).
+For more information about ROCDebugger, refer to the [ROCDebugger User Guide](https://rocm.docs.amd.com/projects/ROCgdb/en/latest/ROCgdb/gdb/doc/gdb/index.html).
 
 ## 5.1.2: ROCProfiler
 
@@ -43,13 +43,13 @@ The following user requirements can be fulfilled using rocprof:
 ### 5.1.2.1: Counters and Metric Collection
 To collect counters and metrics such as number of VMEM read/write instructions issued, number of SALU instructions issued, and other details, use rocprof with profiling options.
 
-For more details, refer to the chapter on Counter and Metric Collection in the [ROCm Profiling Tools User Guide](https://docs.amd.com/category/compilers_and_tools).  
+For more details, refer to the chapter on Counter and Metric Collection in the [ROCm Profiling Tools User Guide](https://rocm.docs.amd.com/projects/rocprofiler/en/latest/profiler_home_page.html).
 
 ### 5.1.2.2: Application Tracing
 
 To retrieve kernel-level traces such as workgroup size, HIP/HSA calls, and so on, use rocprof with tracing options such as hsa-trace, hip-trace, sys-trace, and roctx-trace.
 
-To demonstrate the usage of rocprof with various options, the [ROCm Profiling Tools User Guide](https://docs.amd.com/category/compilers_and_tools) refers to the MatrixTranspose application as an example.
+To demonstrate the usage of rocprof with various options, the [ROCm Profiling Tools User Guide](https://rocm.docs.amd.com/projects/rocprofiler/en/latest/profiler_home_page.html) refers to the MatrixTranspose application as an example.
 
 # 5.2: Debug on CPU
 
@@ -87,7 +87,7 @@ System-level profiling for model execution can be done with AMD μProf from AMD 
 
 # 5.3: Debug on FPGA
 
-This section describes the utility tools available in UIF 1.1 for DPU execution debugging, performance profiling, DPU runtime mode manipulation, and DPU configuration file generation. With these tools, you can conduct DPU debugging and performance profiling independently.
+This section describes the utility tools available in UIF 1.2 for DPU execution debugging, performance profiling, DPU runtime mode manipulation, and DPU configuration file generation. With these tools, you can conduct DPU debugging and performance profiling independently.
 
 ## 5.3.1: Profiling the Model
 

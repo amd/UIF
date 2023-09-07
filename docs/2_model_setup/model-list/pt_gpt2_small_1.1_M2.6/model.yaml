@@ -1,0 +1,43 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: GPT2 Small for Wikitext2.
+input size: '1024'
+float ops: 212.6G
+task: Language Modeling
+framework: pytorch
+prune: 'no'
+version: 1.1
+files:
+- name: pt_gpt2_small_1.1_M2.6.tar
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_small_1.1_M2.6.tar
+  checksum: 464712362167f99ecaa5d164a95b83fa
+- name: pt_gpt2_small_1.1_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_small_1.1_M2.6_MI100.tar.gz
+  checksum: 7e247d5ad73f26a8fef7a0fb4599ccde
+- name: pt_gpt2_small_1.1_M2.6_MI210.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_small_1.1_M2.6_MI210.tar.gz
+  checksum: 0de36a9489a4aadbe8e03de3a1ae8d0b
+- name: pt_gpt2_small_1.1_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_small_1.1_M2.6_NAVI2.tar.gz
+  checksum: 9b46b1778b1c73061da0dc7f7d7ec315

@@ -1,0 +1,42 @@
+# Copyright 2019 Xilinx Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: ofa-resnet50 for Image Classification.
+input size: 160*160
+task: classification
+framework: pytorch
+prune: '0.88'
+version: 1.1
+files:
+- name: pt_ofa_resnet_0.88_1.1_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet_0.88_1.1_M2.6.tar.gz
+  checksum: d57ecb4619c7b4b6b13ed9620e6cbd9a
+- name: pt_ofa_resnet50_0.88_1.1_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet50_0.88_1.1_M2.6_MI100.tar.gz
+  checksum: 36f5fcd46b14711fd0ce3520f09502c7
+- name: pt_ofa_resnet50_0.88_1.1_M2.6_MI210.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet50_0.88_1.1_M2.6_MI210.tar.gz
+  checksum: a6cc6898680f17772d195be9e259eb2e
+- name: pt_ofa_resnet50_0.88_1.1_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet50_0.88_1.1_M2.6_NAVI2.tar.gz
+  checksum: 598dc97335b935d33466e03c652110b2

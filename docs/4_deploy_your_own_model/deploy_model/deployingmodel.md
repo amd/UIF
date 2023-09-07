@@ -1,6 +1,6 @@
 <table width="100%">
   <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.1 User Guide </h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Unified Inference Frontend (UIF) 1.2 User Guide </h1>
     </td>
  </tr>
  <tr>
@@ -33,21 +33,21 @@
 
 ## 4.3.1.1: In-Framework
 
-WeGO (<u>W</u>hol<u>e</u> <u>G</u>raph <u>O</u>ptimizer) offers a smooth solution to deploy models on cloud DPU by integrating the Vitis&trade; AI Development kit with TensorFlow 1.x, TensorFlow 2.x, and PyTorch frameworks.
+WeGO (<Whole Graph Optimizer) offers a smooth solution to deploy models on cloud DPU by integrating the Vitis&trade; AI Development kit with TensorFlow 1.x, TensorFlow 2.x, and PyTorch frameworks.
 
 The following platforms are supported for WeGo:
-* Versal™ AI Core series VCK5000-PROD
+* Versal™ AI Core series VCK5000-PROD, V70
 
 For more information on setting up the host and running WeGO examples, see the [WeGo section](https://github.com/Xilinx/Vitis-AI/tree/master/examples/wego).
 
 ## 4.3.1.2: Native
 
-The following platforms are supported for UIF 1.1:
+The following platforms are supported for UIF 1.2:
 
 * Zynq® UltraScale+™ MPSoC ZU9EG, ZCU102
 * Zynq UltraScale+ MPSoC ZU7EV, ZCU104
 * Zynq UltraScale+ MPSoC, Kria KV260
-* Versal AI Core series VC1902, VCK190, VCK5000-Prod
+* Versal AI Core series VC1902, VCK190, V70
 * Versal Edge AI Core series VE2082, VEK280  
 
 ### Run Models on Edge Platform
@@ -92,15 +92,15 @@ The following platforms are supported for UIF 1.1:
 
 1. Download `Vitis-AI`, enter the `Vitis-AI` directory, and then start the Docker® software. For more information, see the [Getting Started](https://github.com/Xilinx/Vitis-AI#getting-started) section in the Vitis AI™ development environment documentation.
 
-2. For the `VCK5000-PROD` Versal card, follow the instructions in [Set Up the VCK5000 Accelerator Card](https://github.com/Xilinx/Vitis-AI/blob/master/board_setup/vck5000/board_setup_vck5000.rst) to set up the host.
+2. For the `V70` Versal card, follow the instructions in [Set Up the V70 Accelerator Card](https://github.com/Xilinx/Vitis-AI/blob/master/board_setup/v70/board_setup_v70.rst) to set up the host.
     
-3. Run Vitis AI Library examples on `VCK5000-PROD`. For more information, see [Run Vitis AI Library Samples](https://github.com/Xilinx/Vitis-AI/blob/master/src/vai_library/README.md#running-vitis-ai-library-examples-on-vck5000) in the Vitis AI documentation.
+3. Run Vitis AI Library examples on `V70`. For more information, see [Run Vitis AI Library Samples](https://github.com/Xilinx/Vitis-AI/blob/master/src/vai_library/README.md#running-vitis-ai-library-examples-on-v70) in the Vitis AI documentation.
 
 # 4.3.2: Deploy Model for CPU
 
 ## 4.3.2.1: Run UIF Models with ZenDNN
 
-This section introduces using the ZenDNN optimized models with TensorFlow, PyTorch and ONNXRT.
+This section introduces using the ZenDNN optimized models with TensorFlow, PyTorch, and ONNXRT.
 
 ### Run Examples with TensorFlow+ZenDNN
 
@@ -128,7 +128,7 @@ Similarly, use the `run_eval` scripts for validating the accuracy. To set up the
 
 Install PyTorch+ZenDNN. For more information, see the [Installation](/docs/1_installation/installation.md#132-pytorchzendnn) section.
 
-This tutorial uses personreid-resnet50 as an example. Download the personreid-resnet50 model as described in the [UIF Model Setup section](/docs/2_model_setup/uifmodelsetup.md).
+This tutorial uses personreid-resnet50 as an example. Download the personreid-resnet50 model as described in the [UIF Model Setup](/docs/2_model_setup/uifmodelsetup.md) section.
 
 1. Unzip the model package.
 
@@ -149,7 +149,7 @@ Similarly, use the `run_eval` scripts for validating the accuracy. To set up the
 
 Install ONNXRT+ZenDNN. For more information, see the [Installation](/docs/1_installation/installation.md#133-onnxrtzendnn) section.
 
-This tutorial uses ResNet50 as an example. Download the ResNet50 model as described in the [UIF Model Setup section](/docs/2_model_setup/uifmodelsetup.md).
+This tutorial uses ResNet50 as an example. Download the ResNet50 model as described in the [UIF Model Setup](/docs/2_model_setup/uifmodelsetup.md) section.
 
 1. Unzip the model package.
 
@@ -170,13 +170,13 @@ Similarly, use the `run_eval` scripts for validating the accuracy. To set up the
 
 ### Float Models
 
-   To run any single-precision (float) custom model on ZenDNN, follow the steps given in the [ZenDNN Installation section](/docs/1_installation/installation.md#13-install-zendnn-package-for-cpu-users) to install TensorFlow+ZenDNN, PyTorch+ZenDNN or ONNXRT+ZenDNN. Once installation is complete, the model can be run with standard inference steps. One such example is provided in the [example section](/docs/3_run_example/runexample-script.md#311-sample-run-with-tensorflowzendnn).
+   To run any single-precision (float) custom model on ZenDNN, follow the steps given in the [ZenDNN Installation](/docs/1_installation/installation.md#13-install-zendnn-package-for-cpu-users) to install TensorFlow+ZenDNN, PyTorch+ZenDNN or ONNXRT+ZenDNN. Once installation is complete, the model can be run with standard inference steps. One such example is provided in the [example section](/docs/3_run_example/runexample-script.md#311-sample-run-with-tensorflowzendnn).
 
 ### Model Compression Techniques for ZenDNN
 
 #### 1. Pruning a Deep Learning Model
 
-To use the neural compression technique of [pruning a deep learning model](/docs/4_deploy_your_own_model/prune_model/prunemodel.md#411-pruning), follow the steps given in section [4.1: Prune Model with UIF Optimizer](/docs/4_deploy_your_own_model/prune_model/prunemodel.md). Once the pruned models are generated, they can be run on frameworks built with ZenDNN.
+To use the neural compression technique of the [pruning a deep learning model](/docs/4_deploy_your_own_model/prune_model/prunemodel.md#411-pruning), follow the steps given in the [4.1: Prune Model with UIF Optimizer](/docs/4_deploy_your_own_model/prune_model/prunemodel.md) section. After the pruned models are generated, they can be run on frameworks built with ZenDNN.
 
 #### 2. Quantizing a Deep Learning Model
 
@@ -232,7 +232,7 @@ To make use of the ZenDNN model converter tool:
 
 The following example describes the steps needed to run GPU inference using MIGraphX using a model named `resnet50_fp32.onnx` from the Model Zoo.
 
-For additional information and examples on running MIGraphX, refer to the [ROCm Deep Learning Guide.](https://docs.amd.com/bundle/ROCm-Deep-Learning-Guide-v5.4.1/page/Introduction_to_Deep_Learning_Guide.html) 
+For additional information and examples on running MIGraphX, refer to the [ROCm Deep Learning Guide.](https://rocm.docs.amd.com/en/latest/how_to/deep_learning_rocm.html) 
 
 # 4.3.3.1: Preliminary Steps
 
@@ -240,9 +240,9 @@ For additional information and examples on running MIGraphX, refer to the [ROCm 
 
     ```
 
-      prompt% docker pull amdih/uif-pytorch:uif1.1_rocm5.4.1_vai3.0_py3.7_pytorch1.12 
+      prompt% docker pull amdih/uif-pytorch:uif1.2_rocm5.6.1_vai3.5_py3.8_pytorch1.13 
 
-      prompt% docker run -it –cap-add=SYS_PTRACE –security-opt seccomp=undefined --device=/dev/kfd --device=dri --group-add render --ipc=host --shm-size 8G amdih/uif-pytorch:uif1.1_rocm5.4.1_vai3.0_py3.7_pytorch1.12 - base 
+      prompt% docker run -it –cap-add=SYS_PTRACE –security-opt seccomp=undefined --device=/dev/kfd --device=dri --group-add render --ipc=host --shm-size 8G amdih/uif-pytorch:uif1.2_rocm5.6.1_vai3.5_py3.8_pytorch1.13 - base 
     ```
 
 2. Download a trained model for the GPU. For more information, refer to [Model Setup](/docs/2_model_setup/uifmodelsetup.md).

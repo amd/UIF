@@ -1,0 +1,55 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: Distill BERT v1.5 for SQuADv1.1 Question Answering
+input size: '384'
+float ops: 35.34G
+task: Question Answering
+framework: PyTorch
+prune: 'no'
+version: 1.2
+files:
+
+
+pt_distilbert_1.2_M2.6.tar.gz                 	986c3ddaa0966819f39f4a63bb4b62f0
+pt_distilbert_1.2_M2.6_MI100.tar.gz           	69aee805421f160f1d682882d1a7699e
+pt_distilbert_1.2_M2.6_MI210.tar.gz           	b3feaf2f91c838be22c53ab81f2b6d3b
+pt_distilbert_1.2_M2.6_NAVI2.tar.gz           	2154e8a2b9959fb89a5817cf226fa270
+
+
+- name: pt_distilbert_1.2_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_distilbert_1.2_M2.6.tar.gz
+  checksum: 986c3ddaa0966819f39f4a63bb4b62f0
+- name: pt_distilbert_1.2_M2.6_MI100.tar.gz
+  type: Ymodel
+  board: M100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_distilbert_1.2_M2.6_MI100.tar.gz
+  checksum: 69aee805421f160f1d682882d1a7699e 
+- name: pt_distilbert_1.2_M2.6_MI210.tar.gz
+  type: Ymodel
+  board: M210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_distilbert_1.2_M2.6_MI210.tar.gz
+  checksum: b3feaf2f91c838be22c53ab81f2b6d3b
+- name: pt_distilbert_1.2_M2.6_NAVI2.tar.gz
+  type: Ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_distilbert_1.2_M2.6_NAVI2.tar.gz
+  checksum: 2154e8a2b9959fb89a5817cf226fa270  
+license: https://github.com/amd/UIF/blob/main/LICENSE
+
+
+

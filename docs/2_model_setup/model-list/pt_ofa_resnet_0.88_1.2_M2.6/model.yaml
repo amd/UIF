@@ -1,0 +1,50 @@
+# Copyright 2019 Xilinx Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: ofa-resnet50 for Image Classification.
+input size: 160*160
+float ops: 1.8G
+task: classification
+framework: PyTorch
+prune: '0.88'
+version: 1.2
+files:
+
+pt_ofa_resnet_0.88_1.2_M2.6.tar.gz            	f17ec850364e6aede8ffe9b11d5477a1
+pt_ofa_resnet_0.88_1.2_M2.6_NAVI2.tar.gz      	2ae2058543996204996bb1149ff9424f
+pt_ofa_resnet_1.2_M2.6_MI100.tar.gz           	1df797727806a90ae6fffe27d185d3e5
+pt_ofa_resnet_1.2_M2.6_MI210.tar.gz           	a401e30ac197a861995d000a52d271b8
+
+- name: pt_ofa_resnet_0.88_1.2_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet_0.88_1.2_M2.6.tar.gz
+  checksum: f17ec850364e6aede8ffe9b11d5477a1
+- name: pt_ofa_resnet_1.2_M2.6_MI100.tar.gz
+  type: Ymodel
+  board: M100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet_1.2_M2.6_MI100.tar.gz
+  checksum: 2ae2058543996204996bb1149ff9424f  
+- name: pt_ofa_resnet_1.2_M2.6_MI210.tar.gz
+  type: Ymodel
+  board: M210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet_1.2_M2.6_MI210.tar.gz
+  checksum: 1df797727806a90ae6fffe27d185d3e5
+- name: pt_ofa_resnet_0.88_1.2_M2.6_NAVI2.tar.gz
+  type: Ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_ofa_resnet_0.88_1.2_M2.6_NAVI2.tar.gz
+  checksum: a401e30ac197a861995d000a52d271b8  
+license: https://github.com/amd/UIF/blob/main/LICENSE

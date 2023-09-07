@@ -1,0 +1,43 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: DLRM for CriteoTerabyte Dataset.
+input size: 13,26
+float ops: 20K
+task: Recommendation System
+framework: pytorch
+prune: 'no'
+version: 1.1
+files:
+- name: pt_dlrm_1.1_M2.6.zip
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm_1.1_M2.6.zip
+  checksum: fefaf59393b8920a9c28a8fbf2ca72ad
+- name: pt_dlrm10m_1.1_M2.6_MI100.tar.gz
+  type: ymodel
+  board: MI100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm10m_1.1_M2.6_MI100.tar.gz
+  checksum: 4eea1ffe7b98033696fbdc73e50c83c0
+- name: pt_dlrm10m_1.1_M2.6_MI210.tar.gz
+  type: ymodel
+  board: MI210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm10m_1.1_M2.6_MI210.tar.gz
+  checksum: 79e9ce6f8fd014fa31028f11669203e8
+- name: pt_dlrm10m_1.1_M2.6_NAVI2.tar.gz
+  type: ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_dlrm10m_1.1_M2.6_NAVI2.tar.gz
+  checksum: 69ee508ca8cda10a56f2b0b546dcebd3

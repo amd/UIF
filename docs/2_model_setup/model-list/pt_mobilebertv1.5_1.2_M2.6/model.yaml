@@ -1,0 +1,43 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: MobileBERT v1.5 for SQuADv1.1 Question Answering
+float ops: 30.8G
+task: Question Answering
+framework: pytorch
+prune: 'no'
+version: 1.2
+files:
+- name: pt_mobilebert_1.2_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_bert_large_SQuADv1.1_384_246.42G_1.1_M2.4.tar
+  checksum: 76ecd09d231c4e3534aa5ac078a52143
+- name: pt_mobilebert_1.2_M2.6_MI100.tar.gz
+  type: Ymodel
+  board: M100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_mobilebert_1.2_M2.6_MI100.tar.gz
+  checksum: 0ba43546d6495e2ea3b075962e507db1
+- name: pt_mobilebert_1.2_M2.6_MI210.tar.gz
+  type: Ymodel
+  board: M210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_mobilebert_1.2_M2.6_MI210.tar.gz
+  checksum: 207ee94a8c157ee72d550bab41a88e45
+- name: pt_mobilebert_1.2_M2.6_NAVI2.tar.gz
+  type: Ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_mobilebert_1.2_M2.6_NAVI2.tar.gz
+  checksum: 127a9dffdabf14deaa19d5bee4c5875f  
+license: https://github.com/amd/UIF/blob/main/LICENSE

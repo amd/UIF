@@ -1,0 +1,44 @@
+# Copyright (c) 2018-2022 Advanced Micro Devices, Inc. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+description: GPT2 medium trained on Wikitext2
+float ops: 1.6T
+task: Language Modeling
+framework: pytorch
+prune: 'no'
+version: 1.2
+files:
+- name: pt_gpt2_medium_1.2_M2.6.tar.gz
+  type: float
+  board: GPU
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_medium_1.2_M2.6.tar.gz
+  checksum: 75bec314bf2a24d81d4dcbea26b28802
+- name: pt_gpt2_medium_1.2_M2.6_MI100.tar.gz
+  type: Ymodel
+  board: M100
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_medium_1.2_M2.6_MI100.tar.gz
+  checksum: 89f3566a20fea5c1c6fa15b32809fb34
+- name: pt_gpt2_medium_1.2_M2.6_MI210.tar.gz 
+  type: Ymodel
+  board: M210
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_medium_1.2_M2.6_MI210.tar.gz
+  checksum: cef07ea0e16329451085bad6b9001d9f
+- name: pt_gpt2_medium_1.2_M2.6_NAVI2.tar.gz 
+  type: Ymodel
+  board: NAVI2
+  download link: https://www.xilinx.com/bin/public/openDownload?filename=pt_gpt2_medium_1.2_M2.6_NAVI2.tar.gz
+  checksum: 72023855fc0bfdb376cddf83fad54476
+license: https://github.com/amd/UIF/blob/main/LICENSE
+

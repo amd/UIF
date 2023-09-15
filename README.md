@@ -125,7 +125,7 @@ UIF is licensed under [Apache License Version 2.0](LICENSE). Refer to the [LICEN
 
 Contact uif_support@amd.com for questions, issues, and feedback on UIF.
 
-Submit your questions, feature requests, and bug reports on the [GitHub issues](https://https://github.com/amd/UIF/issues) page.
+Submit your questions, feature requests, and bug reports on the [GitHub issues](https://github.com/amd/UIF/issues) page.
 
 # AMD Copyright Notice and Disclaimer
 

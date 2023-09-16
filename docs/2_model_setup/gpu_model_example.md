@@ -21,7 +21,7 @@
 
 UIF accelerates deep learning inference applications on all AMD compute platforms for popular machine learning frameworks, including TensorFlow, PyTorch, and ONNXRT. UIF 1.2 extends the support to AMD Radeon™ GPUs in addition to AMD Instinct™ GPUs. Currently, [MIGraphX](https://github.com/ROCmSoftwarePlatform/AMDMIGraphX) is the acceleration library for Deep Learning Inference running on AMD Instinct GPUs. 
 
-The following example takes a PyTorch ResNet-50-v1.5 model selected from UIF Model Zoo as an example to show how it works on different GPU platforms.
+The following example takes a [PyTorch ResNet-50-v1.5 model](https://github.com/amd/UIF/blob/main/docs/2_model_setup/model-list/pt_resnet50v1.5_1.1_M2.6/model.yaml) selected from UIF Model Zoo as an example to show how it works on different GPU platforms.
 
 **Note:**  The model tuning time on a MI210 device is long (around three hours). With MI210, it is recommended to skip this step and use the YModel provided in the model packages.
 

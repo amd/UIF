@@ -380,6 +380,8 @@ Provide `1` as input to download the GPU model.
 	                                              100.0%|100%
 	done
     ```
+**Note**
+See *pt_resnet50v1.5_0.4_1.1_M2.6.tar.gz* for the zipped file.
 
 # 2.3: Set Up MIGraphX YModel
 
